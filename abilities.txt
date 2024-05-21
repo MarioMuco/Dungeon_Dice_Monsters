@@ -1,0 +1,30 @@
+destroy monsters 5x5 around
+move, attack, defend for diferent number of crests
+increase your crests
+increase hp, atk, def
+attacks more times per turn, unlimited
+on summon deal up to 100 damage 
+on summon add dice to your roll
+on destroying a monster get extra dice next turn 
+deal damage to all monsters in a straight line
+when it moves you get crests
+on end phase deal damage to random monster
+increase atk def hp times number of destroyed monsters
+move opponents monster using your crests
+tribute 1 opponents monster - replace places
+tribute 2 same level summon 1 level higher
+heal a monster to full health
+when attacking return to deck
+half atk def hp of an opponents monster
+heal your monster lord if its lower than opponents
+
+
+When a monster you control is destroyed: deal 2 damage to a random opponent's monster - mr.volcano
+On being attacked: the attacker takes damage equal to half its attack
+On being attacked: the attacker takes 3 damage interplanetary
+
+appolousa
+guagdragon baby
+balerdroch
+
+

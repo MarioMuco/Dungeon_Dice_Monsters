@@ -23,12 +23,13 @@ When a monster you control is destroyed: deal 2 damage to a random opponent's mo
 On being attacked: the attacker takes damage equal to half its attack
 On being attacked: the attacker takes 3 damage interplanetary
 
-appolousa
+
+appolousa - gains atk - skull servant
 guagdragon baby
 balerdroch
 numeronius numeronia
-monster that can be summoned twice Player.java = 152
+monster that can be summoned twice Player.java = line 152
 tile textures?
 fusion sumons with a special monster like IP
-
-
+trap abilities
+labyrinth wall trap effect

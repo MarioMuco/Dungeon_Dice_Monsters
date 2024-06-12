@@ -548,6 +548,7 @@ public class Monster {
 			owner.subtractAtk(-1);
 			owner.subtractDef(-1);
 			owner.subtractMove(-1);
+			owner.subtractTrap(-1);
 			mainPanel.changePhase("Action");
 		}
 		else if (name.equalsIgnoreCase("Deus Machinex")) {
@@ -1199,7 +1200,6 @@ public class Monster {
 		return 0;
 	}
 
-	//TODO: spend trap crests for these
 	//Defending abilities
 	public void defend(Monster attacker) {
 		

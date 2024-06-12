@@ -55,20 +55,20 @@ public class Player {
 	
 	public void setUpAllMonsters() {
 		//To add abilities
-		allMonsters.add(new Monster("Naturia Beast", 20, 20, 10, this, mainPanel, 2));//new
-		allMonsters.add(new Monster("Naturia Barkion", 20, 25, 10, this, mainPanel, 2));//new
-		allMonsters.add(new Monster("Babycerasaurus", 10, 10, 10, this, mainPanel, 1));//overdrive
-		allMonsters.add(new Monster("Thunder Dragon Colossus", 40, 30, 30, this, mainPanel, 3));//new
-		allMonsters.add(new Monster("Sky Striker Raye", 20, 15, 15, this, mainPanel, 2));//volcano
-		allMonsters.add(new Monster("Sky Striker Roze", 20, 15, 15, this, mainPanel, 2));//wall shadow
-		allMonsters.add(new Monster("Ash Blossom", 10, 10, 20, this, mainPanel, 1));
-		allMonsters.add(new Monster("Ursarctic Polari", 10, 10, 0, this, mainPanel, 1));
-		allMonsters.add(new Monster("Albaz", 15, 25, 15, this, mainPanel, 2));
-		allMonsters.add(new Monster("Ecclesia", 10, 15, 10, this, mainPanel, 2));
-		allMonsters.add(new Monster("Linkuriboh", 20, 10, 0, this, mainPanel, 1));
-		allMonsters.add(new Monster("Stardust Dragon", 30, 20, 10, this, mainPanel, 3));
-		allMonsters.add(new Monster("Ghoti of the Deep Beyond", 40, 0, 0, this, mainPanel, 3));
-		allMonsters.add(new Monster("Stone Sweeper", 10, 20, 0, this, mainPanel, 1));
+		//allMonsters.add(new Monster("Naturia Beast", 20, 20, 10, this, mainPanel, 2));//new
+		//allMonsters.add(new Monster("Naturia Barkion", 20, 25, 10, this, mainPanel, 2));//new
+		//allMonsters.add(new Monster("Babycerasaurus", 10, 10, 10, this, mainPanel, 1));//overdrive
+		//allMonsters.add(new Monster("Thunder Dragon Colossus", 40, 30, 30, this, mainPanel, 3));//new
+		//allMonsters.add(new Monster("Sky Striker Raye", 20, 15, 15, this, mainPanel, 2));//volcano
+		//allMonsters.add(new Monster("Sky Striker Roze", 20, 15, 15, this, mainPanel, 2));//wall shadow
+		//allMonsters.add(new Monster("Ash Blossom", 10, 10, 20, this, mainPanel, 1));
+		//allMonsters.add(new Monster("Ursarctic Polari", 10, 10, 0, this, mainPanel, 1));
+		//allMonsters.add(new Monster("Albaz", 15, 25, 15, this, mainPanel, 2));
+		//allMonsters.add(new Monster("Ecclesia", 10, 15, 10, this, mainPanel, 2));
+		//allMonsters.add(new Monster("Linkuriboh", 20, 10, 0, this, mainPanel, 1));
+		//allMonsters.add(new Monster("Stardust Dragon", 30, 20, 10, this, mainPanel, 3));
+		//allMonsters.add(new Monster("Ghoti of the Deep Beyond", 40, 0, 0, this, mainPanel, 3));
+		//allMonsters.add(new Monster("Stone Sweeper", 10, 20, 0, this, mainPanel, 1));
 		
 		//Abilities done
 		allMonsters.add(new Monster("Yata-Garasu", 20, 0, 0, this, mainPanel, 1));

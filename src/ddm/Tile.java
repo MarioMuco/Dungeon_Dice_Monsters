@@ -22,7 +22,7 @@ public class Tile extends JLabel{
 	private Monster monster = null;
 	private MouseListener mouseListener = null;
 	
-	private int cModifier = 2;	//makes C (cModifier*2) shorter than R overall
+	private int cModifier = 2;	//Makes C (cModifier*2) shorter than R overall
 	
 	private String condition = "empty";	//path1, path2, empty, dne
 	
@@ -53,16 +53,16 @@ public class Tile extends JLabel{
 		if (state.equals("path1") || state.equals("path2") 
 				|| state.equals("empty") || state.equals("dne")) {
 			condition = state;
-			//setPathPic();		//ADD IN THE FUTURE!!!!!
+			//setPathPic();		//TODO:
 		}
 		else
-			JOptionPane.showConfirmDialog(null, "ERROR 69: invalid state of tile to change.\n"
+			JOptionPane.showConfirmDialog(null, "Invalid state of tile to change.\n"
 					+ "Do something about it.", 
  					"ERROR", JOptionPane.ERROR_MESSAGE);
 		updatePics();
 	}
 	
-	//not in use
+	//TODO:
 	public void setPathPic() {
 		if (condition.equals("path1")) {
 			URL imageURL = getClass().getResource("resources/path1.jpg");	
@@ -72,7 +72,7 @@ public class Tile extends JLabel{
 				Image newimg = image.getScaledInstance(this.getWidth()-1, this.getHeight()-1,  java.awt.Image.SCALE_SMOOTH);
 				setIcon(new ImageIcon(newimg));
 			} else {
-				JOptionPane.showConfirmDialog(null, "ERROR 69: bad path1 imageURL recieved from Tile class.\n"
+				JOptionPane.showConfirmDialog(null, "Bad path1 imageURL recieved from Tile class.\n"
 						+ "Do something about it.", 
 						"ERROR", JOptionPane.ERROR_MESSAGE);
 			}
@@ -85,7 +85,7 @@ public class Tile extends JLabel{
 				Image newimg = image.getScaledInstance(this.getWidth()-1, this.getHeight()-1,  java.awt.Image.SCALE_SMOOTH);
 				setIcon(new ImageIcon(newimg));
 			} else {
-				JOptionPane.showConfirmDialog(null, "ERROR 69: bad path2 imageURL recieved from Tile class.\n"
+				JOptionPane.showConfirmDialog(null, "Bad path2 imageURL recieved from Tile class.\n"
 						+ "Do something about it.", 
 						"ERROR", JOptionPane.ERROR_MESSAGE);
 			}
@@ -94,7 +94,7 @@ public class Tile extends JLabel{
 	
 	public void addMonster (Monster monsterToPlace) {
 		if (monster != null) {
-			System.out.println("ERROR 69: trying to add monster to a tile with a monster.\n"
+			System.out.println("Trying to add monster to a tile with a monster.\n"
 					+ "Do something about it.");
 			return;
 		}
@@ -113,12 +113,13 @@ public class Tile extends JLabel{
 		}
 	}
 	
-	public void removeMonster() {	//also an indirect illegal destroy
+	public void removeMonster() {	//Also an indirect illegal destroy
 		removeMouseListener(mouseListener);
 		monster = null;
 		setIcon(null);
 		updatePics();
 	}
+	
 	public void checkAndDestroyMonster() {
 		if (monster.hp() <= 0) {
 			System.out.println("DESTROY");

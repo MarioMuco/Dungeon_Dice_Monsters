@@ -24,11 +24,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-//TODO: read code, fix sizes
-
 public class Panel extends JPanel {
 	
-
 	private static final long serialVersionUID = 1L;
 	
 	private final int gameWidth = 1100, gameHeight = 625;
@@ -67,7 +64,6 @@ public class Panel extends JPanel {
 	
 	private int monsterLevel = 0;
 	
-	
 	public Panel() {
 		setFocusable(true);
 		setLayout(null);
@@ -82,7 +78,7 @@ public class Panel extends JPanel {
 			player2.randomizeName();
 		}
 		
-		for (int R=0; R<tiles.length; R++)	//adds tile recognition to all tiles
+		for (int R=0; R<tiles.length; R++)	//Adds tile recognition to all tiles
 			for (int C=0; C<tiles[0].length; C++) {
 				final int r69 = R, c69 = C;
 				tiles[r69][c69].addMouseListener(new MouseAdapter() {
@@ -244,6 +240,7 @@ public class Panel extends JPanel {
 		} );
 		add(phaseChangeButton);	
 
+		//Butonat e deck-ut
 		deckButton1 = new JButton();
 		deckButton1.setSize(150,30);
 		deckButton1.setLocation(gameWidth - 5, 5);
@@ -301,11 +298,10 @@ public class Panel extends JPanel {
 		add(deckButton5);
 
 		rightShark = new JPanel();
-		rightShark.setSize(156, 500);	//156, finalItem.getY()+finalItem.getHeight()
+		rightShark.setSize(156, 500);
 		rightShark.setLayout(null);
 		rightShark.setBackground(Color.gray);
 		rightShark.setLocation(board.getX() + board.getWidth() + 7, board.getY() + 150);
-				//board.getX() + board.getWidth() + 7,  board.getY() + ((board.getHeight() - rightShark.getHeight())/2)
 		add(rightShark);
 		updateMonsterPanel(tiles[tiles.length-3][(tiles.length-1)/2].monster());
 		
@@ -340,7 +336,7 @@ public class Panel extends JPanel {
 					  	currentPlayer.name() 
 						+ " (" + currentPlayer.color() + "), chose a level dice to roll", "Roll The Dice", 
 				        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, 
-				        new String[]{"Level 1", "Level 2", "Level 3", "Level 4"}, // this is the array
+				        new String[]{"Level 1", "Level 2", "Level 3", "Level 4"},
 				        "default");
 			  monsterLevel = 5;
 			  if (response == 0)
@@ -398,7 +394,7 @@ public class Panel extends JPanel {
 		  }
 		  else if (phase.equalsIgnoreCase("Ability")) {
 			  phaseLabel.setText(abilityMonster.abilityPhaseText());
-			  phaseChangeButton.setText("Carry out the ability");	//IMPLEAMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+			  phaseChangeButton.setText("Carry out the ability");	//IMPLEAMENT!
 			  phaseChangeButton.setEnabled(false);
 			  if (abilityMonster.abilityPhaseText().equalsIgnoreCase("~"))
 				  changePhase("Action");
@@ -435,7 +431,7 @@ public class Panel extends JPanel {
 		changePhase("Roll");
 	}
 	
-	public boolean monsterSelectionPopup() {	//alert popup returns if a monster to summon exists
+	public boolean monsterSelectionPopup() {
 		int monstersForGrid = 0;
 		boolean hasMonsterToSummon = false;
 		for (int i=0; i<currentPlayer.allMonsters().size(); i++) {
@@ -461,8 +457,7 @@ public class Panel extends JPanel {
 		JPanel monsterGridPanel = new JPanel();
 		monsterGridPanel.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
 		monsterGridPanel.setBackground(Color.lightGray);
-		//monsterGridPanel.setSize(60*gridWidth + 4, 60*gridWidth + 4);
-		monsterGridPanel.setLayout(new GridLayout(gridWidth, gridWidth, 1, 1));	//have a (0, 0) border?
+		monsterGridPanel.setLayout(new GridLayout(gridWidth, gridWidth, 1, 1));
 		
 		lastLabelTouchedInGrid = null;
 		final Border grayBorder = BorderFactory.createLineBorder(Color.gray, 2);
@@ -472,9 +467,8 @@ public class Panel extends JPanel {
 			if (currentPlayer.allMonsters().get(i).level() == monsterLevel) {
 				final int monsterIndex = i, labelIndex = smallMonsterLabels.size();
 				smallMonsterLabels.add(new JLabel());
-				//smallMonsterLabels.get(labelIndex).setPreferredSize(new Dimension(60, 60));
 				smallMonsterLabels.get(labelIndex).setIcon(currentPlayer.allMonsters().get(monsterIndex)
-						.getResizedImageIcon(120,120));	//(60,60)
+						.getResizedImageIcon(120,120));
 				smallMonsterLabels.get(labelIndex).setHorizontalAlignment(SwingConstants.CENTER);
 				smallMonsterLabels.get(labelIndex).setMinimumSize(new Dimension(10, 10));
 				smallMonsterLabels.get(labelIndex).setBorder(BorderFactory.createLineBorder(Color.gray, 2));
@@ -487,7 +481,6 @@ public class Panel extends JPanel {
 				smallMonsterLabels.get(labelIndex).addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {   
 						lastLabelTouchedInGrid.setBorder(grayBorder);
-						//smallMonsterLabels.get(labelIndex).setPreferredSize(new Dimension(60,60));
 						smallMonsterLabels.get(labelIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
 						monsterToSummon = currentPlayer.allMonsters().get(monsterIndex);
 						updateMonsterPanel(monsterToSummon);
@@ -532,11 +525,14 @@ public class Panel extends JPanel {
 			else if (roll.contains("spell")) {
 				currentPlayer.addSpell(Integer.parseInt("" + roll.charAt(5)));
 			}
+			else if (roll.contains("trap")) {
+				currentPlayer.addTrap(Integer.parseInt("" + roll.charAt(4)));
+			}
 			else if (roll.equals(Integer.toString(level))) {
 				summonCrests++;
 			}
 			else {
-				JOptionPane.showConfirmDialog(null, "ERROR 69: invalid dice roll result.\nDo something about it.", 
+				JOptionPane.showConfirmDialog(null, "Invalid dice roll result.\nDo something about it.", 
 	 					"ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			dieRolls[i].setIcon(getResizedPic(roll, 50, 50));
@@ -548,7 +544,7 @@ public class Panel extends JPanel {
 		return false;
 	}
 	
-	public void addMonsterToTile(Monster monster, Tile aTile) {	//the official way
+	public void addMonsterToTile(Monster monster, Tile aTile) {	//The official way
 		aTile.addMonster(monster);
         addPopUp(aTile);
         monster.owner().summonAMonster(monster);
@@ -557,7 +553,7 @@ public class Panel extends JPanel {
         monster.summon();
 	}
 	
-	public void addMonsterToTileLv0(Monster monster, Tile aTile, Player the_owner) {	//the indirect illegal way
+	public void addMonsterToTileLv0(Monster monster, Tile aTile, Player the_owner) {	//The indirect illegal way
 		aTile.addMonster(monster);
         addPopUp(aTile);
         the_owner.summonedMonsters().add(monster);
@@ -600,7 +596,7 @@ public class Panel extends JPanel {
 				r = myTile.r();
 				c = myTile.c();
 				
-				for (int i=0; i<4; i++){	//change pattern for ranged attackers
+				for (int i=0; i<4; i++){	//Change pattern for ranged attackers
 					Tile temp = tiles[borderingTiles.r(i) + r][borderingTiles.c(i) + c];
 					
 					if (temp.monster() != null
@@ -721,7 +717,7 @@ public class Panel extends JPanel {
 				if (temp.c() > tiles.length - 3 - cModifier)
 					cBig = true;
 			}
-		}	//if rotated or placed out of bounds, gets snapped back on border
+		}	//If rotated or placed out of bounds, gets snapped back on border
 		if (rSmall)
 			r++;
 		if (cSmall)
@@ -733,7 +729,6 @@ public class Panel extends JPanel {
 		if (rSmall || cSmall || rBig || cBig)
 			isPreviewOutsideAndPushBack();
 	}
-
 
 	public void updateDiePanel(int dice) {
 		diePanel.removeAll();
@@ -775,7 +770,7 @@ public class Panel extends JPanel {
 				return imageIcon;
 			}	
 		}
-		JOptionPane.showConfirmDialog(null, "ERROR 69: invalid pic \"" + picName + "\" inside getResizedPic() in Panel class.\n"
+		JOptionPane.showConfirmDialog(null, "Invalid pic \"" + picName + "\" inside getResizedPic() in Panel class.\n"
 				+ "Do something about it.", 
 					"ERROR", JOptionPane.ERROR_MESSAGE);
 		return null;
@@ -1079,7 +1074,7 @@ public class Panel extends JPanel {
 				}	
 			}
 			
-			
+
 			if (phase.equalsIgnoreCase("Attack")) {
 				
 				int key = e.getKeyCode();
@@ -1091,15 +1086,12 @@ public class Panel extends JPanel {
 				}
 			}
 			
-			
-			
-					
 			if (phase.equalsIgnoreCase("Pattern")) {
 				
 				int key = e.getKeyCode();
 				
 				if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
-					for (int i=0; i<6; i++)	//prevents from moving out of bounds
+					for (int i=0; i<6; i++)	//Prevents from moving out of bounds
 						if (tiles[r+patterns[p].r(i)][c+patterns[p].c(i) +1 ].getState().equals("dne"))
 							return;
 					undoPreview();
@@ -1137,7 +1129,7 @@ public class Panel extends JPanel {
 					createPreview();
 					return;
 				}
-				if (key == KeyEvent.VK_R) {	//rotate
+				if (key == KeyEvent.VK_R) {	//Rotate
 					rotations++;
 					undoPreview();
 					p = pNonrotated + rotations%4;
@@ -1145,7 +1137,7 @@ public class Panel extends JPanel {
 					createPreview();
 					return;
 				}
-				if (key == KeyEvent.VK_Q) {	//new pattern
+				if (key == KeyEvent.VK_Q) {	//New pattern
 					changePattern();
 					return;
 				}
@@ -1163,7 +1155,7 @@ public class Panel extends JPanel {
 		 			}		
 				}
 				
-				if (key == KeyEvent.VK_ENTER) {	//place a pattern
+				if (key == KeyEvent.VK_ENTER) {	//Place a pattern
 					int turn = currentPlayer.turnPlayer();
 					
 					boolean friendlyBorder = false;

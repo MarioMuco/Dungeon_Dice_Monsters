@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 public class Player {
 	
 	private final int turnPlayer;
-	private int atk = 0, def = 0, move = 0, spell = 0;
+	private int atk = 0, def = 0, move = 0, spell = 0,trap = 0;
 	private String name = "";
 	private ArrayList <Monster> summonedMonsters = new ArrayList<Monster>();
 	private int destroyedMonsters = 0;
@@ -30,11 +30,10 @@ public class Player {
 	
 	private int dieBonus = 0;
 	
-	private String[] nameTemp = {"Yugi", "Tristan", "Mai", "Joey Wheeler", "Bakura", "Marik", "Kaiba", 
-			"Pegasus", "Duke Devlin", "Jack Atlas", "Mokuba", "Tea", "Jaden", "Youngster Joey", "Weevil", "Dartz"};
+	private String[] nameTemp = {"Yugi", "Tristan", "Mai", "Joey", "Bakura", "Marik", "Kaiba", 
+			"Pegasus", "Duke", "Jack", "Mokuba", "Tea", "Jaden", "Yusei", "Weevil", "Dartz"};
 	
 	private ArrayList <Monster> allMonsters = new ArrayList<Monster>();
-	
 	
 	public Player(int turn, Panel main_panel) {
 		turnPlayer = turn;
@@ -55,7 +54,7 @@ public class Player {
 	}
 	
 	public void setUpAllMonsters() {
-		//to add abilities
+		//To add abilities
 		allMonsters.add(new Monster("Naturia Beast", 20, 20, 10, this, mainPanel, 2));//new
 		allMonsters.add(new Monster("Naturia Barkion", 20, 25, 10, this, mainPanel, 2));//new
 		allMonsters.add(new Monster("Babycerasaurus", 10, 10, 10, this, mainPanel, 1));//overdrive
@@ -71,7 +70,7 @@ public class Player {
 		allMonsters.add(new Monster("Ghoti of the Deep Beyond", 40, 0, 0, this, mainPanel, 3));
 		allMonsters.add(new Monster("Stone Sweeper", 10, 20, 0, this, mainPanel, 1));
 		
-		//abilities done
+		//Abilities done
 		allMonsters.add(new Monster("Yata-Garasu", 20, 0, 0, this, mainPanel, 1));
 		allMonsters.add(new Monster("Dangerous Machine Type-6", 20, 0, 0, this, mainPanel, 1));
 		allMonsters.add(new Monster("Tsuchinoko", 10, 10, 0, this, mainPanel, 1));
@@ -95,7 +94,6 @@ public class Player {
 		allMonsters.add(new Monster("Winged Dragon of Ra", 60, 60, 60, this, mainPanel, 5));
 	}
 	
-
 	public void addAtk(int i) {
 		atk = atk + i;
 		attackLabel.setText(" " + atk);
@@ -111,6 +109,10 @@ public class Player {
 	public void addSpell(int i) {
 		spell = spell + i;
 		spellLabel.setText(" " + spell);
+	}
+	public void addTrap(int i) {
+		trap = trap + i;
+		trapLabel.setText(" " + trap);
 	}
 	
 	public void subtractAtk(int i) {
@@ -129,6 +131,10 @@ public class Player {
 		spell = spell - i;
 		spellLabel.setText(" " + spell);
 	}
+	public void subtractTrap(int i) {
+		trap = trap - i;
+		trapLabel.setText(" " + trap);
+	}
 	
 	public void setDieBonus(int newDieBonus) {
 		dieBonus = newDieBonus;
@@ -140,14 +146,16 @@ public class Player {
 	public ArrayList <Monster> summonedMonsters() {
 		return summonedMonsters;
 	}
+
 	public void summonAMonster(Monster monster) {
-		summonedMonsters.add(monster);	//monster lord not included
+		summonedMonsters.add(monster);	//Monster lord not included
 		
-		int index = allMonsters.indexOf(monster);	//for one time use of every monster
+		int index = allMonsters.indexOf(monster);	//For one time use of every monster
 		if (index >= 0) {
 			allMonsters.remove(monster);
 		}
 	}
+
 	public void destroyMonster (Monster monster) {
 		summonedMonsters.remove(monster);
 		destroyedMonsters++;
@@ -184,6 +192,9 @@ public class Player {
 	public int spell() {
 		return spell;
 	}
+	public int trap() {
+		return trap;
+	}
 	public String name() {
 		return name;
 	}
@@ -204,7 +215,7 @@ public class Player {
 	private void setUpPanel() {
 		panel = new JPanel();
 		panel.setSize(126, 250);
-		panel.setLayout(new GridLayout(5,0));
+		panel.setLayout(new GridLayout(6,0)); //TODO: needs to change to accomodate traps
 		if (turnPlayer == 1) {
 			panel.setBackground(Color.blue);
 			panelForeground = Color.orange;
@@ -270,9 +281,9 @@ public class Player {
 		trapLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		trapLabel.setForeground(panelForeground);
 		trapLabel.setFont(attackLabel.getFont());
-		trapLabel.setText(" " + spell);	//note the spell
+		trapLabel.setText(" " + trap);
 		trapLabel.setIcon(getIcon("trap1", 25, 25));
-		//panel.add(trapLabel);	//add trap? (change gridlayout)
+		panel.add(trapLabel);
 	}
 	public JPanel panel() {
 		return panel;
@@ -288,14 +299,14 @@ public class Player {
 			if (imageIcon != null)
 				return imageIcon;
 		}
-		JOptionPane.showConfirmDialog(null, "ERROR: invalid pic inside Player class.\n"
+		JOptionPane.showConfirmDialog(null, "Invalid pic inside Player class.\n"
 				+ "Do something about it.", 
 					"ERROR", JOptionPane.ERROR_MESSAGE);
 		return null;
 	}
 	
 	public String toString() {
-		return "atk: " + atk + "\tdef: " + def + "\tmove: " + move + "\tspell: " + spell;
+		return "atk: " + atk + "\tdef: " + def + "\tmove: " + move + "\tspell: " + spell + "\ttrap: " + trap;
 	}
 	
 }

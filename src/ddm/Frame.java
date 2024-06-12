@@ -40,7 +40,7 @@ public class Frame extends JFrame{
 			}
 		}else{
 			System.out.println("imageURL: " + imageURL);
-		JOptionPane.showConfirmDialog(null, "ERROR 1: bad imageURL recieved from Monster class for resources/icon.png\n"
+		JOptionPane.showConfirmDialog(null, "Bad imageURL recieved from Monster class for resources/icon.png\n"
 				+ "Do something about it.", 
  				"ERROR", JOptionPane.ERROR_MESSAGE);
 		}
@@ -77,9 +77,6 @@ public class Frame extends JFrame{
 		URL imageURL = getClass().getResource("resources/" + "loading" + ".gif");	
 		if (imageURL != null) {
 			ImageIcon imageIcon = new ImageIcon(imageURL);
-			//Image image = imageIcon.getImage();
-			//Image newimg = image.getScaledInstance(500, 500, java.awt.Image.SCALE_DEFAULT);
-			//imageIcon = new ImageIcon(newimg);
 			loadingLabel.setIcon(imageIcon);
 			loadWindow.add(loadingLabel);
 			loadWindow.pack();
@@ -88,7 +85,7 @@ public class Frame extends JFrame{
 		}
 		else {
 			System.out.println("imageURL: " + imageURL);
-			JOptionPane.showConfirmDialog(null, "ERROR 69: bad imageURL recieved from Frame class for loading.gif\n"
+			JOptionPane.showConfirmDialog(null, "Bad imageURL recieved from Frame class for loading.gif\n"
 					+ "Do something about it.", 
 	 				"ERROR", JOptionPane.ERROR_MESSAGE);
 		}
@@ -98,5 +95,4 @@ public class Frame extends JFrame{
 		new Frame();
 	}
 	
-
 }

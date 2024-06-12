@@ -6,14 +6,13 @@ import javax.swing.JOptionPane;
 
 public class Dice {
 	
-	private String[] dice = new String[6];	//1, 2, 3, 4, atk, def, move, spell
+	private String[] dice = new String[6];
 	private int summonCrests = 0;
 	private ArrayList <String> crestPool = new ArrayList<String>();
 	
-	private int atk = 25, def = 15, move = 45, spell = 15;	//percentage chance, make sure adds up to 100
-	
-	//atk .25, def .125, move .5, spell .125
-	
+	//percentage chance, make sure adds up to 100
+	private int atk = 25, def = 15, move = 35, spell = 15, trap = 10;	
+		
 	public Dice(int level) {
 		
 		setUpCrests();
@@ -29,7 +28,7 @@ public class Dice {
 		else if (level == 5)
 			summonCrests = 0;
 		else if (level < 1 || level > 5)
-			JOptionPane.showConfirmDialog(null, "ERROR 69: invalid level for dice.\n"
+			JOptionPane.showConfirmDialog(null, "Invalid level for dice.\n"
 					+ "Do something about it.", 
  					"ERROR", JOptionPane.ERROR_MESSAGE);
 		
@@ -39,9 +38,7 @@ public class Dice {
 			else {
 				dice[i] = crestPool.get((int)(Math.random()*crestPool.size()));
 			}
-		//System.out.print(dice[i] + " ");
 		}
-		//System.out.println();
 	}
 	
 	private void setUpCrests() {
@@ -51,6 +48,8 @@ public class Dice {
 			crestPool.add("def1");
 		for (int i=0; i<spell; i++)
 			crestPool.add("spell1");
+		for (int i=0; i<trap; i++)
+			crestPool.add("trap1");
 		
 		int move1, move2;
 		move2 = move/2;
@@ -59,8 +58,6 @@ public class Dice {
 			crestPool.add("move1");
 		for (int i=0; i<(move2/2); i++)
 			crestPool.add("move2");
-		
-		//{"atk1", "atk1", "def1", "move1", "move1", "move2", "spell1"};	//original
 	}
 	
 	public String roll() {

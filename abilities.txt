@@ -26,5 +26,9 @@ On being attacked: the attacker takes 3 damage interplanetary
 appolousa
 guagdragon baby
 balerdroch
+numeronius numeronia
+monster that can be summoned twice Player.java = 152
+tile textures?
+fusion sumons with a special monster like IP
 
 

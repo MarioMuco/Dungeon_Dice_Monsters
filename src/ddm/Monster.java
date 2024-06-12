@@ -62,6 +62,7 @@ public class Monster {
 		setUpPanel();
 	}
 	
+	//Monster's abilities setup
 	private void setUpAbility() {
 		if (name.equalsIgnoreCase("Monster Lord 1")) {
 			hasActivatableAbility = true;
@@ -508,7 +509,7 @@ public class Monster {
 		return "~";
 	}
 	
-	//text when summoning
+	//Text when summoning
 	public void summon() {
 		if (name.equalsIgnoreCase("Gandora")) {
 			if (mainPanel.opponent().summonedMonsters().size() < 1) {
@@ -564,7 +565,7 @@ public class Monster {
 			mainPanel.changePhase("Action");
 	}
 	
-	//activatable abilities
+	//Activatable abilities
 	public void ability() {
 		if (name.equalsIgnoreCase("Monster Lord 1") || name.equalsIgnoreCase("Monster Lord 2")) {
 			if (owner.atk() + owner.def() + owner.move() + owner.spell() < 20) {
@@ -926,6 +927,7 @@ public class Monster {
 		}		
 	}
 	
+	//Trigger abilities
 	public void receivedAbility(Tile tile, Monster target) {
 		if (name.equalsIgnoreCase("AriseHeart")) {
 			if (abilityTiles.contains(tile) && !tile.equals(myTile)) {
@@ -1152,7 +1154,7 @@ public class Monster {
 		mainPanel.changePhase("Action");
 	}
 	
-	//abilities when turn ends
+	//Abilities when turn ends
 	public void endTurnAbility() {
 		if (name.equalsIgnoreCase("Winged Dragon of Ra")) {
 			if (mainPanel.opponent().summonedMonsters().size() > 0) {
@@ -1165,7 +1167,7 @@ public class Monster {
 		}
 	}
 	
-	//abilities when rolling
+	//Abilities when rolling
 	public int rollAbility() {
 		if (name.equalsIgnoreCase("Dangerous Machine Type-6")) {
 			if ((int)(Math.random()*4) == 0)	//25%
@@ -1196,81 +1198,9 @@ public class Monster {
 		}
 		return 0;
 	}
-	
-	//movin cost per tile
-	public double moveCost() {	//per tile
-		if (name.equalsIgnoreCase("Deus Machinex")) {
-			return 0.5;
-		}
-		else if (name.equalsIgnoreCase("Magicians of Bond and Unity")) {
-			return 0.5;
-		}
-		else if (name.equalsIgnoreCase("Cartesia")) {
-			return 0.5;
-		}
-		else if (name.equalsIgnoreCase("Winged Dragon of Ra")){
-			owner.subtractSpell(-2);
-			return 1;
-		}
-		else if (name.equalsIgnoreCase("Obelisk the Tormentor")){
-			owner.subtractAtk(-2);
-			return 1;
-		}
-		else if (name.equalsIgnoreCase("Slifer the Sky Dragon")){
-			owner.subtractDef(-2);
-			return 1;
-		}
-		return 1;
-	}
-	
-	public int attackCost() {
-		if (name.equalsIgnoreCase("Gameciel, The Sea Turtle Kaiju"))
-			return 2;
-		else if (name.equalsIgnoreCase("Dragon Magia Master"))
-			return 2;
-		else if (name.equalsIgnoreCase("Lil La"))
-			return 3;
-		else if (name.equalsIgnoreCase("Ki Sikil"))
-			return 3;
-		
-		return 1;
-	}
-	
-	public int defenceCost() {
-		if (name.equalsIgnoreCase("Winged Dragon of Ra"))
-			return 0;
-		else if (name.equalsIgnoreCase("Obelisk the Tormentor"))
-			return 0;
-		else if (name.equalsIgnoreCase("Slifer the Sky Dragon"))
-			return 0;
-		return 1;
-	}
-	
-	//game end
-	public void destroy() {
-		if (name.contains("Monster Lord")) {
-			mainPanel.changePhase("Game Over");
-			JLabel deathLabel = new JLabel();
-			deathLabel.setIcon(getResizedGif("exodia", 500, 500));
-			JOptionPane.showMessageDialog(null, deathLabel,
-					mainPanel.currentPlayer().name().toUpperCase() + " WINS!!!!!",
-					JOptionPane.PLAIN_MESSAGE);
-		}
-	}
-	
-	public boolean hasAttackedMaxTimes() {
-		return (attacksLeft < 1);
-	}
-	
-	public void newTurnAttackReset() {
-		attacksLeft = attacksOriginalAmount;
-	}
 
-	public void attack() {
-		attacksLeft--;
-	}
-	
-	//defending abilities
+	//TODO: spend trap crests for these
+	//Defending abilities
 	public void defend(Monster attacker) {
 		
 		if (name.equalsIgnoreCase("Monster Lord 1") || name.equalsIgnoreCase("Monster Lord 2")) {
@@ -1330,6 +1260,107 @@ public class Monster {
 		mainPanel.updateMonsterPanel(this);
 		myTile.checkAndDestroyMonster();
 	}
+
+	//When destroying a monster by battle
+	public void destroyAMonsterByBattle() {
+		if (name.equalsIgnoreCase("AriseHeart")) {
+			owner.setDieBonus(owner.dieBonus() + 1);
+		}
+	}
+
+	//Ability when attacked or attacks
+	public boolean attackingInterupt(Monster target) {
+		if (name.equalsIgnoreCase("Lil La") || name.equalsIgnoreCase("Ki Sikil")) {
+			target.changeHp(target.originalHp());
+			if (target.name().contains("Juunishishi")) {
+				mainPanel.theActualOpponent(owner.turnPlayer()).juunishishiArray().add(target);
+				if (target.name().equalsIgnoreCase
+						("Juunishishi Molmorat") || name.equalsIgnoreCase("Juunishishi Thoroughblade"))
+					mainPanel.theActualOpponent(owner.turnPlayer()).allMonsters().add(target);
+			}
+			else
+				mainPanel.theActualOpponent(owner.turnPlayer()).allMonsters().add(target);
+			target.tile().removeMonster();
+			this.changeHp(this.originalHp());
+			this.owner().allMonsters().add(this);
+			this.tile().removeMonster();
+			mainPanel.updateMonsterPanel(this);
+			return true;
+		}
+		return false;
+	}
+	
+	public double moveCost() {
+		if (name.equalsIgnoreCase("Deus Machinex")) {
+			return 0.5;
+		}
+		else if (name.equalsIgnoreCase("Magicians of Bond and Unity")) {
+			return 0.5;
+		}
+		else if (name.equalsIgnoreCase("Cartesia")) {
+			return 0.5;
+		}
+		else if (name.equalsIgnoreCase("Winged Dragon of Ra")){
+			owner.subtractSpell(-2);
+			return 1;
+		}
+		else if (name.equalsIgnoreCase("Obelisk the Tormentor")){
+			owner.subtractAtk(-2);
+			return 1;
+		}
+		else if (name.equalsIgnoreCase("Slifer the Sky Dragon")){
+			owner.subtractDef(-2);
+			return 1;
+		}
+		return 1;
+	}
+	
+	public int attackCost() {
+		if (name.equalsIgnoreCase("Gameciel, The Sea Turtle Kaiju"))
+			return 2;
+		else if (name.equalsIgnoreCase("Dragon Magia Master"))
+			return 2;
+		else if (name.equalsIgnoreCase("Lil La"))
+			return 3;
+		else if (name.equalsIgnoreCase("Ki Sikil"))
+			return 3;
+		
+		return 1;
+	}
+	
+	public int defenceCost() {
+		if (name.equalsIgnoreCase("Winged Dragon of Ra"))
+			return 0;
+		else if (name.equalsIgnoreCase("Obelisk the Tormentor"))
+			return 0;
+		else if (name.equalsIgnoreCase("Slifer the Sky Dragon"))
+			return 0;
+		return 1;
+	}
+	
+	//GameOver
+	public void destroy() {
+		if (name.contains("Monster Lord")) {
+			mainPanel.changePhase("Game Over");
+			JLabel deathLabel = new JLabel();
+			deathLabel.setIcon(getResizedGif("exodia", 500, 500));
+			JOptionPane.showMessageDialog(null, deathLabel,
+					mainPanel.currentPlayer().name().toUpperCase() + " WINS!!!!!",
+					JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	
+	public boolean hasAttackedMaxTimes() {
+		return (attacksLeft < 1);
+	}
+	
+	public void newTurnAttackReset() {
+		attacksLeft = attacksOriginalAmount;
+	}
+
+	public void attack() {
+		attacksLeft--;
+	}
 	
 	public void defaultDefend(Monster attacker) {
 		int activeDef = 0;
@@ -1367,35 +1398,6 @@ public class Monster {
 	    return false;
 	}
 	
-	//when destroying a monster by battle
-	public void destroyAMonsterByBattle() {
-		if (name.equalsIgnoreCase("AriseHeart")) {
-			owner.setDieBonus(owner.dieBonus() + 1);
-		}
-	}
-	
-	//ability when attacked or attacks
-	public boolean attackingInterupt(Monster target) {
-		if (name.equalsIgnoreCase("Lil La") || name.equalsIgnoreCase("Ki Sikil")) {
-			target.changeHp(target.originalHp());
-			if (target.name().contains("Juunishishi")) {
-				mainPanel.theActualOpponent(owner.turnPlayer()).juunishishiArray().add(target);
-				if (target.name().equalsIgnoreCase
-						("Juunishishi Molmorat") || name.equalsIgnoreCase("Juunishishi Thoroughblade"))
-					mainPanel.theActualOpponent(owner.turnPlayer()).allMonsters().add(target);
-			}
-			else
-				mainPanel.theActualOpponent(owner.turnPlayer()).allMonsters().add(target);
-			target.tile().removeMonster();
-			this.changeHp(this.originalHp());
-			this.owner().allMonsters().add(this);
-			this.tile().removeMonster();
-			mainPanel.updateMonsterPanel(this);
-			return true;
-		}
-		return false;
-	}
-	
 	public ImageIcon getResizedImageIcon(int width, int height) {
 		
 		URL imageURL = getClass().getResource("resources/" + "monster_" + name.replace(" ", "_").toLowerCase() + ".jpg");	
@@ -1408,7 +1410,7 @@ public class Monster {
 				return imageIcon;
 		}
 		System.out.println("imageURL: " + imageURL);
-		JOptionPane.showConfirmDialog(null, "Error: bad imageURL recieved from Monster class for .jpg\n"
+		JOptionPane.showConfirmDialog(null, "Bad imageURL recieved from Monster class for .jpg\n"
 				+ "Do something about it.", 
  				"ERROR", JOptionPane.ERROR_MESSAGE);
 		return null;
@@ -1417,7 +1419,6 @@ public class Monster {
 	public ImageIcon getResizedGif(String fileName, int width, int height) {
 		
 		URL imageURL = getClass().getResource("resources/" + fileName.toLowerCase() + ".gif");	
-		//"monster_" + name.replace(" ", "_").toLowerCase()
 		if (imageURL != null) {
 			ImageIcon imageIcon = new ImageIcon(imageURL);
 			Image image = imageIcon.getImage();
@@ -1427,12 +1428,11 @@ public class Monster {
 				return imageIcon;
 		}
 		System.out.println("imageURL: " + imageURL);
-		JOptionPane.showConfirmDialog(null, "Error: bad imageURL recieved from Monster class for .gif\n"
+		JOptionPane.showConfirmDialog(null, "Bad imageURL recieved from Monster class for .gif\n"
 				+ "Do something about it.", 
  				"ERROR", JOptionPane.ERROR_MESSAGE);
 		return null;	//create a default pic to return to
 	}
-
 	
 	public String name() {
 		return name;
@@ -1515,13 +1515,13 @@ public class Monster {
 		monsterNameTextPane.setSize(rightShark.getWidth(), 1000);
 		showName = name;
 		int index = 0, wordLength = 0;
-		while (index<name.length()) {	//check if one word in name is too long (purple... thorny)
+		while (index<name.length()) {	//Check if one word in name is too long
 			char c = name.charAt(index);
 			if (c == ' ')
 				wordLength = 0;
 			else
 				wordLength++;
-			if (wordLength == 15)	//might cause problems on borderline states (words)
+			if (wordLength == 15)	//Might cause problems on borderline states (words)
 				showName = name.substring(0, index) + "... " + name.substring(index);
 			index++;
 		}
@@ -1668,7 +1668,6 @@ public class Monster {
 	    doc3.setParagraphAttributes(0, doc3.getLength(), center3, false);
 	    monsterMemeTextPane.setSize(rightShark.getWidth(), 1000);
 	    monsterMemeTextPane.setText(memeText);
-	    //monsterMemeTextPane.setText("");
 	    monsterMemeTextPane.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 	    monsterMemeTextPane.setSize(rightShark.getWidth(), (int)monsterMemeTextPane.getPreferredSize().getHeight() + 5);
 	    rightShark.add(monsterMemeTextPane);
@@ -1703,12 +1702,10 @@ public class Monster {
 	public void updatePanel() {	
 		
 		monsterNameTextPane.setText(showName);
-		//monsterPicLabel.setIcon(getResizedImageIcon(monsterPicLabel.getWidth(), monsterPicLabel.getHeight()));
 		monsterHPLabel.setText(" " + hp + " / " + originalHp);
 		monsterATKLabel.setText(" " + atk);
 		monsterDEFLabel.setText(" " + def);
 		monsterMemeTextPane.setText(memeText);
-		//monsterMemeTextPane.setText("");
 		if (hp() < 1)
 			monsterHPLabel.setText(" [K.O.] / " + originalHp);
 	}

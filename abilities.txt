@@ -32,4 +32,3 @@ monster that can be summoned twice Player.java = line 152
 tile textures?
 fusion sumons with a special monster like IP
 trap abilities
-labyrinth wall trap effect

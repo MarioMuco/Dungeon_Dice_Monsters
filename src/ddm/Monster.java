@@ -148,6 +148,10 @@ public class Monster {
 		}
 		else if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
 			hasActivatableAbility = false;
+
+			abilityText.add("Increase defence by 20 whe attacked");
+			abilityCostPic.add("trap1");
+			abilityCostxNum.add("x1");
 			
 			memeText = "What's inside?";
 			return;
@@ -569,7 +573,7 @@ public class Monster {
 	//Activatable abilities
 	public void ability() {
 		if (name.equalsIgnoreCase("Monster Lord 1") || name.equalsIgnoreCase("Monster Lord 2")) {
-			if (owner.atk() + owner.def() + owner.move() + owner.spell() < 20) {
+			if (owner.atk() + owner.def() + owner.move() + owner.spell() + owner.trap() < 20) {
 				JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
 						+ " you need at least 20 crests to activate " + name + "'s ability.", 
 		 				"Not enough crests", JOptionPane.INFORMATION_MESSAGE);
@@ -590,6 +594,7 @@ public class Monster {
  			owner.subtractDef(owner.def());
  			owner.subtractMove(owner.move());
  			owner.subtractSpell(owner.spell());
+			owner.subtractTrap(owner.trap());
  			
 			for (int r=-2; r<3; r++)
 				for (int c=-2; c<3; c++)
@@ -1228,11 +1233,18 @@ public class Monster {
 		}
 		
 		defaultDefend(attacker);
-		
+
 		if (name.equalsIgnoreCase("Interplanetarypurplythorny Dragon") 
 				|| name.equalsIgnoreCase("Interplanetarypurplythorny Beast")) {
 			if (!attacker.name().contains("Monster Lord"))
 				attacker.changeHp(attacker.hp() - 3);
+		}
+		
+		//on being attacked the attacker takes damage
+		if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
+			if (!attacker.name().contains("Monster Lord"))
+				owner.subtractTrap(1);
+				changeDef(def + 20);
 		}
 		
 		//On being attacked: the attacker takes damage equal to half its attack

@@ -13,7 +13,6 @@ import javax.swing.border.Border;
 
 public class Tile extends JLabel{
 
-	
 	private static final long serialVersionUID = 1L;
 	private final int r, c;
 	private Border blackBorder = BorderFactory.createLineBorder(Color.black, 1);
@@ -26,9 +25,7 @@ public class Tile extends JLabel{
 	
 	private String condition = "empty";	//path1, path2, empty, dne
 	
-	
 	public Tile(int r_cord, int c_cord) {
-		
 		r = r_cord;
 		c = c_cord;
 		
@@ -53,7 +50,7 @@ public class Tile extends JLabel{
 		if (state.equals("path1") || state.equals("path2") 
 				|| state.equals("empty") || state.equals("dne")) {
 			condition = state;
-			//setPathPic();		//TODO:
+			setPathPic();		// Set the path picture accordingly
 		}
 		else
 			JOptionPane.showConfirmDialog(null, "Invalid state of tile to change.\n"
@@ -62,46 +59,35 @@ public class Tile extends JLabel{
 		updatePics();
 	}
 	
-	//TODO:
 	public void setPathPic() {
+		URL imageURL = null;
 		if (condition.equals("path1")) {
-			URL imageURL = getClass().getResource("resources/path1.jpg");	
-			if (imageURL != null) {
-				ImageIcon imageIcon = new ImageIcon(imageURL);
-				Image image = imageIcon.getImage();
-				Image newimg = image.getScaledInstance(this.getWidth()-1, this.getHeight()-1,  java.awt.Image.SCALE_SMOOTH);
-				setIcon(new ImageIcon(newimg));
-			} else {
-				JOptionPane.showConfirmDialog(null, "Bad path1 imageURL recieved from Tile class.\n"
-						+ "Do something about it.", 
-						"ERROR", JOptionPane.ERROR_MESSAGE);
-			}
+			imageURL = getClass().getResource("resources/path1.jpg");	
 		}
-		if (condition.equals("path2")) {
-			URL imageURL = getClass().getResource("resources/path2.jpg");	
-			if (imageURL != null) {
-				ImageIcon imageIcon = new ImageIcon(imageURL);
-				Image image = imageIcon.getImage();
-				Image newimg = image.getScaledInstance(this.getWidth()-1, this.getHeight()-1,  java.awt.Image.SCALE_SMOOTH);
-				setIcon(new ImageIcon(newimg));
-			} else {
-				JOptionPane.showConfirmDialog(null, "Bad path2 imageURL recieved from Tile class.\n"
-						+ "Do something about it.", 
-						"ERROR", JOptionPane.ERROR_MESSAGE);
-			}
+		else if (condition.equals("path2")) {
+			imageURL = getClass().getResource("resources/path2.jpg");	
+		}
+		
+		if (imageURL != null) {
+			ImageIcon imageIcon = new ImageIcon(imageURL);
+			Image image = imageIcon.getImage();
+			Image newimg = image.getScaledInstance(this.getWidth()-1, this.getHeight()-1, java.awt.Image.SCALE_SMOOTH);
+			setIcon(new ImageIcon(newimg));
+		} else {
+			JOptionPane.showConfirmDialog(null, "Bad imageURL received from Tile class.\n"
+					+ "Do something about it.", 
+					"ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
-	public void addMonster (Monster monsterToPlace) {
+	public void addMonster(Monster monsterToPlace) {
 		if (monster != null) {
 			System.out.println("Trying to add monster to a tile with a monster.\n"
 					+ "Do something about it.");
 			return;
 		}
-		if (monster == null) {
-			monster = monsterToPlace;
-			monster.setTile(this);
-		}
+		monster = monsterToPlace;
+		monster.setTile(this);
 		updatePics();
 	}
 	
@@ -116,7 +102,6 @@ public class Tile extends JLabel{
 	public void removeMonster() {	//Also an indirect illegal destroy
 		removeMouseListener(mouseListener);
 		monster = null;
-		setIcon(null);
 		updatePics();
 	}
 	
@@ -137,33 +122,36 @@ public class Tile extends JLabel{
 	public void rememberMouseListener(MouseListener aMouseListener) {
 		mouseListener = aMouseListener;
 	}
+	
 	public MouseListener mouseListener() {
 		return mouseListener;
 	}
-	public void removeMouseListener () {
+	
+	public void removeMouseListener() {
 		mouseListener = null;
 	}
 	
 	public void updatePics() {
 		setBorder(blackBorder);
-		if (condition.equals("empty"))
+		if (condition.equals("empty")) {
 			setBackground(null);
-		if (condition.equals("dne"))
+			setIcon(null);
+		} else if (condition.equals("dne")) {
 			setBackground(Color.black);
-		if (!condition.equals("dne"))
-		if (condition.equals("path1")) {
+		} else if (condition.equals("path1")) {
 			setBackground(Color.blue);
-		}
-		if (condition.equals("path2")) {
+			setPathPic();
+		} else if (condition.equals("path2")) {
 			setBackground(Color.orange);
+			setPathPic();
 		}
+		
 		if (monster != null) {
 			setIcon(monster.getResizedImageIcon(this.getWidth()-1, this.getHeight()-1));
 			if (monster.owner().turnPlayer() == 1) {
 				setBackground(Color.blue);
 				setBorder(player1Border);
-			}
-			if (monster.owner().turnPlayer() == 2) {
+			} else if (monster.owner().turnPlayer() == 2) {
 				setBackground(Color.orange);
 				setBorder(player2Border);
 			}
@@ -173,6 +161,7 @@ public class Tile extends JLabel{
 	public int r() {
 		return r;
 	}
+	
 	public int c() {
 		return c;
 	}
@@ -182,6 +171,6 @@ public class Tile extends JLabel{
 	}
 	
 	public void setText(String text) {
-		//and no text was set
+		// Do nothing as no text was set
 	}
 }

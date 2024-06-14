@@ -16,8 +16,8 @@ public class Tile extends JLabel{
 	private static final long serialVersionUID = 1L;
 	private final int r, c;
 	private Border blackBorder = BorderFactory.createLineBorder(Color.black, 1);
-	private Border player1Border = BorderFactory.createLineBorder(Color.blue, 2);	//for monster
-	private Border player2Border = BorderFactory.createLineBorder(Color.orange, 2);
+	private Border player1Border = BorderFactory.createLineBorder(new Color(2, 124, 255, 255), 2);
+	private Border player2Border = BorderFactory.createLineBorder(new Color(181, 32, 32, 255), 2);
 	private Monster monster = null;
 	private MouseListener mouseListener = null;
 	
@@ -50,7 +50,7 @@ public class Tile extends JLabel{
 		if (state.equals("path1") || state.equals("path2") 
 				|| state.equals("empty") || state.equals("dne")) {
 			condition = state;
-			setPathPic();		// Set the path picture accordingly
+			setPathPic();
 		}
 		else
 			JOptionPane.showConfirmDialog(null, "Invalid state of tile to change.\n"
@@ -99,7 +99,7 @@ public class Tile extends JLabel{
 		}
 	}
 	
-	public void removeMonster() {	//Also an indirect illegal destroy
+	public void removeMonster() {
 		removeMouseListener(mouseListener);
 		monster = null;
 		updatePics();
@@ -168,9 +168,5 @@ public class Tile extends JLabel{
 	
 	public int cModifier() {
 		return cModifier;
-	}
-	
-	public void setText(String text) {
-		// Do nothing as no text was set
 	}
 }

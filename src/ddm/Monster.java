@@ -70,8 +70,6 @@ public class Monster {
 			abilityText.add("Spend ALL (20+) crests you own to destroy all monsters in a 5x5 square");
 			abilityCostPic.add("cost20");
 			abilityCostxNum.add("");
-			
-			memeText = "Last Resort";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Monster Lord 2")) {
@@ -80,28 +78,31 @@ public class Monster {
 			abilityText.add("Spend ALL (20+) crests you own to destroy all monsters in a 5x5 square");
 			abilityCostPic.add("cost20");
 			abilityCostxNum.add("");
+			return;
+		}
+		//TODO:
+		else if (name.equalsIgnoreCase("Numerounius Numerounia")) {
+			hasActivatableAbility = true;
 			
-			memeText = "Last Resort";
+			abilityText.add("");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Cyber Dragon Core")) {
 			hasActivatableAbility = false;
 			
-			abilityText.add("On summon increase your spell crests by 2");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon increase your spell crests by 2");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-
-			memeText = "The core of something much scarier";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Snake-Eyes Poplar")) {
 			hasActivatableAbility = false;
 			
-			abilityText.add("On summon increase all your crests by 1");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon increase all your crests by 1");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-
-			memeText = "What is a Sinful Spoil";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Vampire Fraulein")) {
@@ -109,41 +110,35 @@ public class Monster {
 
 			abilityText.add("Increase this monster's attack by 10");
 			abilityCostPic.add("spell1");
-			abilityCostxNum.add("x1");
-
-			memeText = "Pretty but deadly";
+			abilityCostxNum.add("");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Magicians of Bond and Unity")) {
 			hasActivatableAbility = false;
 
-			abilityText.add("On summon increase your spell crests by 2");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon increase your spell crests by 2");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			
-			abilityText.add("Can move up to 2 spaces for each movement crest spent");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can move up to 2 spaces for each movement crest spent");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-
-			memeText = "Masters of arcane arts";
 			return;
 		}
 		else if (name.equalsIgnoreCase("AriseHeart")) {
 			hasActivatableAbility = true;
 
-			abilityText.add("On roll add 1 dice to your standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On roll add 1 dice to your standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			
-			abilityText.add("On destroying a monster by battle roll an extra die next turn");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On destroying a monster by battle roll an extra die next turn");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
 			abilityText.add("Deal 10 damage to all monsters in a straight line");
 			abilityCostPic.add("spell1");
 			abilityCostxNum.add("x2");
-
-			memeText = "Rage incarnate";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
@@ -151,89 +146,80 @@ public class Monster {
 
 			abilityText.add("Increase defence by 20 whe attacked");
 			abilityCostPic.add("trap1");
-			abilityCostxNum.add("x1");
-			
-			memeText = "What's inside?";
+			abilityCostxNum.add("");
 			return;
 		}
-		//TODO:
 		else if (name.equalsIgnoreCase("Naturia Beast")) {
 			hasActivatableAbility = false;
 						
-			//memeText = "Double cost for opponents spells";
+			//"Double cost for opponents spells";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Winged Dragon of Ra")) {
 			hasActivatableAbility = false;
 
-			abilityText.add("Every time it moves you get 2 spell");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Every time it moves you get 2 spell");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("On end phase deal 30 damage to a random opponent's monster");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On end phase deal 30 damage to a random opponent's monster");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Can defend itself by using 0 defence crests");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can defend itself by using 0 defence crests");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("On roll add 2 dice to your standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On roll add 2 dice to your standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-						
-			memeText = "Yellow";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Obelisk the Tormentor")) {
 			hasActivatableAbility = true;
 
-			abilityText.add("Every time it moves you get 2 attack crests");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Every time it moves you get 2 attack crests");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("On summon increase atk, def 20x number of destroyed monsters and hp 10x number of destroyed monsters");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon increase atk, def 20x number of destroyed monsters and hp 10x number of destroyed monsters");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Can defend itself by using 0 defence crests");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can defend itself by using 0 defence crests");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("On roll: add 2 dice to your standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On roll: add 2 dice to your standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-						
-			memeText = "Blue";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Slifer the Sky Dragon")) {
 			hasActivatableAbility = true;
 
-			abilityText.add("Every time it moves you get 2 defence crests");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Every time it moves you get 2 defence crests");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Deal 30 damage to all monsters in a straight line");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Deal 30 damage to all monsters in a straight line");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Can defend itself by using 0 defence crests");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can defend itself by using 0 defence crests");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("On roll: add 2 dice to your standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On roll: add 2 dice to your standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-						
-			memeText = "Red";
 			return;
 		}
 		//TODO:
 		else if (name.equalsIgnoreCase("Naturia Barkion")) {
 			hasActivatableAbility = false;
 						
-			//memeText = "Double cost for movement opponent";
+			//"Double cost for movement opponent";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Dragon Magia Master")) {
@@ -244,8 +230,6 @@ public class Monster {
 			abilityCostxNum.add("x2");
 			attacksOriginalAmount = Integer.MAX_VALUE;
 			attacksLeft = attacksOriginalAmount;
-			
-			memeText = "Deadliest fusion to exist";
 			return;
 		}
 		//TODO:
@@ -253,7 +237,7 @@ public class Monster {
 			hasActivatableAbility = false;
 			
 			
-			//memeText = "anchor";
+			//"anchor";
 			return;
 		}
 		//TODO:
@@ -261,34 +245,30 @@ public class Monster {
 			hasActivatableAbility = false;
 			
 			
-			//memeText = "afterburners";
+			//"afterburners";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Dangerous Machine Type-6")) {
 			hasActivatableAbility = false;
 			
-			abilityText.add("On roll add or subtract up to 3 dice to your standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On roll add or subtract up to 3 dice to your standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-			
-			memeText = "Let's play a little game";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Tsuchinoko")) {
 			hasActivatableAbility = false;
 			
-			abilityText.add("On summon: add 1 dice to your next standard roll");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon: add 1 dice to your next standard roll");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-			
-			memeText = "Is that a chonky snake ";
 			return;
 		}
 		//TODO:
 		else if (name.equalsIgnoreCase("Babycerasaurus")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "If destroyed summon big dino";
+			//"If destroyed summon big dino";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Ultimate Conductor Tyranno")) {
@@ -297,45 +277,38 @@ public class Monster {
 			abilityText.add("Spend ALL Attack crests you own to destroy all neiboring monsters in a 5x5 square");
 			abilityCostPic.add("atk1");
 			abilityCostxNum.add("");
-			
-			memeText = "Destroy them all";
 			return;
 		}
-		//TODO:
 		else if (name.equalsIgnoreCase("Thunder Dragon Colossus")) {
 			hasActivatableAbility = true;
 						
-			//memeText = "1 less dice for oppponent";
+			//"1 less dice for oppponent";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Gandora")) {
 			hasActivatableAbility = false;
 			
-			abilityText.add("On summon deal up to 100 damage to a single target");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon deal up to 100 damage to a single target");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-			
-			memeText = "Boom!!!";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Deus Machinex")) {
 			hasActivatableAbility = false;
 
-			abilityText.add("On summon increase your attack crests by 2");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon increase your attack crests by 2");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			
-			abilityText.add("Can attack 2 times per turn");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can attack 2 times per turn");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			attacksOriginalAmount = 2;
 			attacksLeft = attacksOriginalAmount;
 			
-			abilityText.add("Can move up to 2 spaces for each movement crest spent");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can move up to 2 spaces for each movement crest spent");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-			
-			memeText = "A small problem";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Yata-Garasu")) {
@@ -345,19 +318,15 @@ public class Monster {
 			abilityCostPic.add("spell1");
 			abilityCostxNum.add("x2");
 			moveOpponentCost = 2;
-			
-			memeText = "He's back";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Gameciel, The Sea Turtle Kaiju")) {
 			hasActivatableAbility = true;
 			
-			abilityText.add("Tribute an opponent's monster and replace it with this monster under your opponent's control"
+			abilityText.add("-Tribute an opponent's monster and replace it with this monster under your opponent's control"
 					+ "\n (this monster's cost to attack will become 2 attack crests)");
-			abilityCostPic.add("cost0");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-			
-			memeText = "Do you want a Kaiju Sea Turtle?";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Gameciel The Sea Turtle Kaiju")) {
@@ -366,8 +335,6 @@ public class Monster {
 			abilityText.add("The cost to attack is 2 attack crests");
 			abilityCostPic.add("atk1");
 			abilityCostxNum.add("x2");
-			
-			memeText = "Enjoy the Kaiju Sea Turtle";
 			return;
 		}
 		else if (name.equalsIgnoreCase("IP Masquerena")) {
@@ -376,116 +343,107 @@ public class Monster {
 			abilityText.add("Tribute 2 monsters of the same level to summon a monster 1 level higher");
 			abilityCostPic.add("spell1");
 			abilityCostxNum.add("x2");
-			
-			memeText = "Riding all day long";
 			return;
 		}
 		else if (name.equalsIgnoreCase("Ki Sikil")) {
 			hasActivatableAbility = true;
 			
-			abilityText.add("Heal a monster to full health");
-			abilityCostPic.add("spell1");
-			abilityCostxNum.add("x2");
-
-			abilityText.add("When this monster battles: "
+			abilityText.add("-When this monster battles: "
 						+ "return both this monster and the monster it is battling to their owner's monster pool");
-			abilityCostPic.add("cost0");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			
 			abilityText.add("The cost to attack is 3 attack crests");
 			abilityCostPic.add("atk1");
 			abilityCostxNum.add("x3");
-			
-			memeText = "Hmmm";
+
+			abilityText.add("Heal a monster to full health");
+			abilityCostPic.add("spell1");
+			abilityCostxNum.add("x2");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Lil La")) {
 			hasActivatableAbility = true;
-			
-			abilityText.add("Half the atk of an opponent's monster and reduce its def by 10");
-			abilityCostPic.add("spell1");
-			abilityCostxNum.add("x2");
 
-			abilityText.add("When this monster battles: "
+			abilityText.add("-When this monster battles: "
 						+ "return both this monster and the monster it is battling to their owner's monster pool");
-			abilityCostPic.add("cost0");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			
 			abilityText.add("The cost to attack is 3 attack crests");
 			abilityCostPic.add("atk1");
 			abilityCostxNum.add("x3");
-			
-			memeText = "Hmmmm";
+
+			abilityText.add("Half the atk of an opponent's monster and reduce its def by 10");
+			abilityCostPic.add("spell1");
+			abilityCostxNum.add("x2");
 			return;
 		} 
 		else if (name.equalsIgnoreCase("Cartesia")) {
 			hasActivatableAbility = false;
 			 
-			abilityText.add("On summon heal your Monster Lord for 1 hp if your opponent's Monster Lord has more hp");
-			abilityCostPic.add("cost0");
+			abilityText.add("-On summon heal your Monster Lord for 1 hp if your opponent's Monster Lord has more hp");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Can move up to 2 spaces for each movement crest spent");
-			abilityCostPic.add("cost0");
+			abilityText.add("-Can move up to 2 spaces for each movement crest spent");
+			abilityCostPic.add("");
 			abilityCostxNum.add("");
-
-			memeText = "Is Ecclesia still there";
 			return;
 		} 
-		//TODO:
 		else if (name.equalsIgnoreCase("Ash Blossom")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Ursarctic Polari")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Albaz")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Ecclesia")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Linkuriboh")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+	
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Stardust Dragon")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Ghoti of the Deep Beyond")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "increase attack";
+			// "increase attack";
 			return;
 		} 
 		//TODO:
 		else if (name.equalsIgnoreCase("Stone Sweeper")) {
 			hasActivatableAbility = true;
 			
-			//memeText = "";
+
 			return;
 		}
 
@@ -1443,7 +1401,7 @@ public class Monster {
 		JOptionPane.showConfirmDialog(null, "Bad imageURL recieved from Monster class for .gif\n"
 				+ "Do something about it.", 
  				"ERROR", JOptionPane.ERROR_MESSAGE);
-		return null;	//create a default pic to return to
+		return null;
 	}
 	
 	public String name() {
@@ -1517,7 +1475,7 @@ public class Monster {
 		rightShark = new JPanel();
 		rightShark.setSize(156, 700);
 		rightShark.setLayout(null);
-		rightShark.setBackground(Color.white);
+		rightShark.setBackground(new Color(255, 255, 255, 255));
 		
 		monsterNameTextPane = new JTextPane();
 		monsterNameTextPane.setEditable(false);  
@@ -1527,13 +1485,13 @@ public class Monster {
 		monsterNameTextPane.setSize(rightShark.getWidth(), 1000);
 		showName = name;
 		int index = 0, wordLength = 0;
-		while (index<name.length()) {	//Check if one word in name is too long
+		while (index<name.length()) {
 			char c = name.charAt(index);
 			if (c == ' ')
 				wordLength = 0;
 			else
 				wordLength++;
-			if (wordLength == 15)	//Might cause problems on borderline states (words)
+			if (wordLength == 15)
 				showName = name.substring(0, index) + "... " + name.substring(index);
 			index++;
 		}
@@ -1688,11 +1646,11 @@ public class Monster {
 	    
 		if (owner.turnPlayer() == 1) {
 			rightShark.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-			monsterPicLabel.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+			monsterPicLabel.setBorder(BorderFactory.createLineBorder(new Color(2, 124, 255, 255), 2));
 		}
 		if (owner.turnPlayer() == 2) {
 			rightShark.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-			monsterPicLabel.setBorder(BorderFactory.createLineBorder(Color.orange, 2));
+			monsterPicLabel.setBorder(BorderFactory.createLineBorder(new Color(181, 32, 32, 255), 2));
 		}
 	}
 	private ImageIcon getRegularResizedPic(String picName, int picWidth, int picHeight) {
@@ -1706,13 +1664,10 @@ public class Monster {
 				return imageIcon;
 			}	
 		}
-		JOptionPane.showConfirmDialog(null, "Error: invalid pic \"" + picName + "\" inside getResizedPic() in Panel class.\n"
-				+ "Do something about it.", 
-					"ERROR", JOptionPane.ERROR_MESSAGE);
 		return null;
 	}
+
 	public void updatePanel() {	
-		
 		monsterNameTextPane.setText(showName);
 		monsterHPLabel.setText(" " + hp + " / " + originalHp);
 		monsterATKLabel.setText(" " + atk);
@@ -1721,6 +1676,7 @@ public class Monster {
 		if (hp() < 1)
 			monsterHPLabel.setText(" [K.O.] / " + originalHp);
 	}
+	
 	public JPanel panel() {
 		return rightShark;
 	}

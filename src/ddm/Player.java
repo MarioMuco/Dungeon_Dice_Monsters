@@ -69,7 +69,9 @@ public class Player {
 		//allMonsters.add(new Monster("Stardust Dragon", 30, 20, 10, this, mainPanel, 3));
 		//allMonsters.add(new Monster("Ghoti of the Deep Beyond", 40, 0, 0, this, mainPanel, 3));
 		//allMonsters.add(new Monster("Stone Sweeper", 10, 20, 0, this, mainPanel, 1));
-		
+		//allMonsters.add(new Monster("Numerounius Numerounia", 10, 1000, 1000, this, mainPanel, 5));
+	
+
 		//Abilities done
 		allMonsters.add(new Monster("Yata-Garasu", 20, 0, 0, this, mainPanel, 1));
 		allMonsters.add(new Monster("Dangerous Machine Type-6", 20, 0, 0, this, mainPanel, 1));
@@ -215,14 +217,14 @@ public class Player {
 	private void setUpPanel() {
 		panel = new JPanel();
 		panel.setSize(126, 250);
-		panel.setLayout(new GridLayout(6,0)); //TODO: needs to change to accomodate traps
+		panel.setLayout(new GridLayout(6,0));
 		if (turnPlayer == 1) {
-			panel.setBackground(Color.blue);
-			panelForeground = Color.orange;
+			panel.setBackground(new Color(2, 124, 255, 255));
+			panelForeground = Color.white;
 		}
 		else if (turnPlayer == 2) {
-			panel.setBackground(Color.orange);
-			panelForeground = Color.blue;
+			panel.setBackground(new Color(181, 32, 32, 255));
+			panelForeground = Color.white;
 		}
 		
 		nameLabel = new JLabel();
@@ -232,7 +234,6 @@ public class Player {
 		nameLabel.setForeground(panelForeground);
 		nameLabel.setFont(new Font("Ariel", Font.BOLD, 16));
 		nameLabel.setText(name);
-		nameLabel.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 		panel.add(nameLabel);
 		
 		attackLabel = new JLabel();
@@ -285,6 +286,7 @@ public class Player {
 		trapLabel.setIcon(getIcon("trap1", 25, 25));
 		panel.add(trapLabel);
 	}
+	
 	public JPanel panel() {
 		return panel;
 	}

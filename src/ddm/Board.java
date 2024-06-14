@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	public final int width = 760;	//inside around 600
+	public final int width = 660;
 	public static final int tilesInBoard = 17;
-	private final int tilesInLength = tilesInBoard + 4;	//2 tiles outside on each side of board
-	private Tile[][] tiles = new Tile[tilesInLength][tilesInLength];	//invisibleWidth = (width/tilesInBoard)*tilesInLength
+	private final int tilesInLength = tilesInBoard + 4;
+	private Tile[][] tiles = new Tile[tilesInLength][tilesInLength];
 	
 	public Board() {
 		setLayout(new GridLayout(tilesInLength, tilesInLength));

@@ -1,28 +1,29 @@
 package ddm;
 
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.border.Border;
+
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 public class Panel extends JPanel {
 	
@@ -45,7 +46,7 @@ public class Panel extends JPanel {
 	private boolean turnPlayer1 = true, canPlace = false;
 	private Player currentPlayer = player1;
 	
-	private JLabel turnLabel, turnLabelLabel, phaseLabel;
+	private JLabel turnLabel;
 	private JButton phaseChangeButton, deckButton1, deckButton2, deckButton3, deckButton4, deckButton5;
 	private JPanel rightShark;  
 	
@@ -63,12 +64,12 @@ public class Panel extends JPanel {
 	private boolean isAbilityMovement = false;
 	
 	private int monsterLevel = 0;
-	
+
 	public Panel() {
 		setFocusable(true);
 		setLayout(null);
 		setPreferredSize(new Dimension(gameWidth, gameHeight));
-		setBackground(Color.black);
+		setBackground(new Color(229, 220, 220, 255));
 		init();
 
 		key = new Key();
@@ -78,7 +79,7 @@ public class Panel extends JPanel {
 			player2.randomizeName();
 		}
 		
-		for (int R=0; R<tiles.length; R++)	//Adds tile recognition to all tiles
+		for (int R=0; R<tiles.length; R++)
 			for (int C=0; C<tiles[0].length; C++) {
 				final int r69 = R, c69 = C;
 				tiles[r69][c69].addMouseListener(new MouseAdapter() {
@@ -162,43 +163,25 @@ public class Panel extends JPanel {
 
 		turnLabel = new JLabel();
 		turnLabel.setOpaque(true);
-		turnLabel.setSize(150,50);
+		turnLabel.setSize(150,30);
 		turnLabel.setLocation(10, gameHeight/2 + 60);
 		turnLabel.setFocusable(false);
 		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		turnLabel.setText(currentPlayer.name());
 		if (turnPlayer1){
-			turnLabel.setBackground(Color.blue);
-			turnLabel.setForeground(Color.yellow);
+			turnLabel.setBackground(new Color(2, 124, 255, 255));
+			turnLabel.setForeground(Color.white);
 		}
 		else {
-			turnLabel.setBackground(Color.orange);
-			turnLabel.setForeground(Color.blue);
+			turnLabel.setBackground(new Color(181, 32, 32, 255));
+			turnLabel.setForeground(Color.white);
 		}
 		add(turnLabel);
-		
-		turnLabelLabel = new JLabel();
-		turnLabelLabel.setOpaque(false);
-		turnLabelLabel.setSize(150,50);
-		turnLabelLabel.setLocation(10, turnLabel.getY()-40);
-		turnLabelLabel.setFocusable(false);
-		turnLabelLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		turnLabelLabel.setText("Turn Player:");
-		add(turnLabelLabel);
-		
-		phaseLabel = new JLabel();
-		phaseLabel.setOpaque(false);
-		phaseLabel.setSize(150,50);
-		phaseLabel.setLocation(10, turnLabel.getY()+40);
-		phaseLabel.setFocusable(false);
-		phaseLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		phaseLabel.setText(phase);
-		add(phaseLabel);
-		
+						
 		phaseChangeButton = new JButton();
-		phaseChangeButton.setSize(150,50);
-		phaseChangeButton.setLocation(10, turnLabel.getY() - 90);
-		phaseChangeButton.setFocusable(false);	//IMPORTANT
+		phaseChangeButton.setSize(150,30);
+		phaseChangeButton.setLocation(10, turnLabel.getY() - 50);
+		phaseChangeButton.setFocusable(false);
 		phaseChangeButton.setText("This is Button");
 
 		phaseChangeButton.addActionListener(new ActionListener() { 
@@ -244,7 +227,7 @@ public class Panel extends JPanel {
 		deckButton1 = new JButton();
 		deckButton1.setSize(150,30);
 		deckButton1.setLocation(gameWidth - 5, 5);
-		deckButton1.setFocusable(false);	//IMPORTANT
+		deckButton1.setFocusable(false);
 		deckButton1.setText("Level 1");
 		deckButton1.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -255,7 +238,7 @@ public class Panel extends JPanel {
 		deckButton2 = new JButton();
 		deckButton2.setSize(150,30);
 		deckButton2.setLocation(gameWidth - 5, 40);
-		deckButton2.setFocusable(false);	//IMPORTANT
+		deckButton2.setFocusable(false);	
 		deckButton2.setText("Level 2");
 		deckButton2.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -266,7 +249,7 @@ public class Panel extends JPanel {
 		deckButton3 = new JButton();
 		deckButton3.setSize(150,30);
 		deckButton3.setLocation(gameWidth - 5, 75);
-		deckButton3.setFocusable(false);	//IMPORTANT
+		deckButton3.setFocusable(false);	
 		deckButton3.setText("Level 3");
 		deckButton3.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -277,7 +260,7 @@ public class Panel extends JPanel {
 		deckButton4 = new JButton();
 		deckButton4.setSize(150,30);
 		deckButton4.setLocation(gameWidth - 5, 110);
-		deckButton4.setFocusable(false);	//IMPORTANT
+		deckButton4.setFocusable(false);	
 		deckButton4.setText("Level 4");
 		deckButton4.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -288,7 +271,7 @@ public class Panel extends JPanel {
 		deckButton5 = new JButton();
 		deckButton5.setSize(150,30);
 		deckButton5.setLocation(gameWidth - 5, 145);
-		deckButton5.setFocusable(false);	//IMPORTANT
+		deckButton5.setFocusable(false);	
 		deckButton5.setText("Level 5?");
 		deckButton5.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -317,7 +300,6 @@ public class Panel extends JPanel {
 	
 	public void changePhase(String phaseTemp) {
 		  if (phase.equalsIgnoreCase("Game Over") || phaseTemp.equalsIgnoreCase("Game Over")) {
-			  phaseLabel.setText("GAME OVER");
 			  phaseChangeButton.setText(currentPlayer.name().toUpperCase() + " WINS!!!!!");
 			  phaseChangeButton.setEnabled(false);
 			  return;
@@ -329,7 +311,6 @@ public class Panel extends JPanel {
 		  phase = phaseTemp; //{"Roll", "Pattern", "Move", "Action", "Attack", "Ability", "End"}
 		
 		  if (phase.equalsIgnoreCase("Roll")) {
-			  phaseLabel.setText("Roll the dice");
 			  phaseChangeButton.setText("Roll");
 			  phaseChangeButton.setEnabled(false);
 			  int response = JOptionPane.showOptionDialog(null, 
@@ -358,7 +339,6 @@ public class Panel extends JPanel {
 			  }
 		  }
 		  else if (phase.equalsIgnoreCase("Pattern")) {
-			  	phaseLabel.setText("Place the die pattern");
 				phaseChangeButton.setEnabled(true);
 				phaseChangeButton.setText("Cancel Summon");
 				r = (int)(tiles.length-1)/2;
@@ -374,26 +354,22 @@ public class Panel extends JPanel {
 				return;
 		  }
 		  else if (phase.equalsIgnoreCase("Move")) {
-			  phaseLabel.setText("Use wasd to move");
 			  phaseChangeButton.setEnabled(true);
 			  phaseChangeButton.setText("Cancel Movement");
 			  tiles[r][c].setBorder(BorderFactory.createLineBorder(Color.green, 1));
 			  return;
 		  }
 		  else if (phase.equalsIgnoreCase("Action")) {
-			  phaseLabel.setText("Select a monster to act");
 			  phaseChangeButton.setEnabled(true);
 			  phaseChangeButton.setText("End Turn");
 			  return;
 		  }
 		  else if (phase.equalsIgnoreCase("Attack")) {
-			  phaseLabel.setText("Select a target");
 			  phaseChangeButton.setEnabled(true);
 			  phaseChangeButton.setText("Cancel Attack");
 			  return;
 		  }
 		  else if (phase.equalsIgnoreCase("Ability")) {
-			  phaseLabel.setText(abilityMonster.abilityPhaseText());
 			  phaseChangeButton.setText("Carry out the ability");	//IMPLEAMENT!
 			  phaseChangeButton.setEnabled(false);
 			  if (abilityMonster.abilityPhaseText().equalsIgnoreCase("~"))
@@ -404,7 +380,6 @@ public class Panel extends JPanel {
 			  changeTurn();
 			  return;
 		  }
-		phaseLabel.setText("ERROR UNRECOGNIZED PHASE");
 		phaseChangeButton.setText(phase.substring(0,1).toUpperCase() + phase.substring(1).toLowerCase());
 	}
 	
@@ -415,14 +390,14 @@ public class Panel extends JPanel {
 		turnPlayer1 = !turnPlayer1;
 		if (turnPlayer1){
 			currentPlayer = player1;
-			turnLabel.setBackground(Color.blue);
-			turnLabel.setForeground(Color.yellow);
+			turnLabel.setBackground(new Color(2, 124, 255, 255));
+			turnLabel.setForeground(Color.white);
 			turnLabel.setText(player1.name());
 			}
 		else {
 			currentPlayer = player2;
-			turnLabel.setBackground(Color.orange);
-			turnLabel.setForeground(Color.blue);
+			turnLabel.setBackground(new Color(181, 32, 32, 255));
+			turnLabel.setForeground(Color.white);
 			turnLabel.setText(player2.name());
 		}
 		for (Monster monst : monstersWhoAttacked)
@@ -845,7 +820,6 @@ public class Panel extends JPanel {
 		changePhase("Move");
 		if (isAbility) {
 			isAbilityMovement = true;
-			phaseLabel.setText("Move the target");
 			phaseChangeButton.setText("Move the target");
 			phaseChangeButton.setEnabled(false);
 		}
@@ -859,10 +833,6 @@ public class Panel extends JPanel {
 	
 	public Player currentPlayer() {
 		return currentPlayer;
-	}
-	
-	public void phaseLabel(String text) {
-		phaseLabel.setText(text);
 	}
 	
 	public Monster selectedMonster() {

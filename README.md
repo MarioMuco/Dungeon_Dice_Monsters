@@ -1,6 +1,6 @@
 # DungeonDiceMonsters
 
-![image](https://github.com/MarioMuco/Dungeon_Dice_Monsters/assets/45602326/1386fe96-6811-4f6b-a223-1e0a422e5076)
+![image](https://github.com/MarioMuco/Dungeon_Dice_Monsters/assets/45602326/af340af6-9a15-44a7-9f1b-823f2f043231)
 
 ![image](https://github.com/MarioMuco/Dungeon_Dice_Monsters/assets/45602326/beab5140-fc10-49d4-b025-f356f5b4aea8)
 

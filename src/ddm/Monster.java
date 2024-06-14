@@ -136,7 +136,7 @@ public class Monster {
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("Deal 10 damage to all monsters in a straight line");
+			abilityText.add("Deal 10 damage to a monster in a straight line");
 			abilityCostPic.add("spell1");
 			abilityCostxNum.add("x2");
 			return;
@@ -144,7 +144,7 @@ public class Monster {
 		else if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
 			hasActivatableAbility = false;
 
-			abilityText.add("Increase defence by 20 whe attacked");
+			abilityText.add("Increases defence by 20 after getting attacked");
 			abilityCostPic.add("trap1");
 			abilityCostxNum.add("");
 			return;
@@ -158,11 +158,7 @@ public class Monster {
 		else if (name.equalsIgnoreCase("Winged Dragon of Ra")) {
 			hasActivatableAbility = false;
 
-			abilityText.add("-Every time it moves you get 2 spell");
-			abilityCostPic.add("");
-			abilityCostxNum.add("");
-
-			abilityText.add("-On end phase deal 30 damage to a random opponent's monster");
+			abilityText.add("-Every time it moves you get 2 spell crests");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
@@ -171,6 +167,10 @@ public class Monster {
 			abilityCostxNum.add("");
 
 			abilityText.add("-On roll add 2 dice to your standard roll");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-On end phase deal 30 damage to a random opponent's monster");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			return;
@@ -182,15 +182,15 @@ public class Monster {
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("-On summon increase atk, def 20x number of destroyed monsters and hp 10x number of destroyed monsters");
-			abilityCostPic.add("");
-			abilityCostxNum.add("");
-
 			abilityText.add("-Can defend itself by using 0 defence crests");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
 			abilityText.add("-On roll: add 2 dice to your standard roll");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-On summon increase atk, def 20x number of destroyed monsters and hp 10x number of destroyed monsters");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			return;
@@ -202,15 +202,15 @@ public class Monster {
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
-			abilityText.add("-Deal 30 damage to all monsters in a straight line");
-			abilityCostPic.add("");
-			abilityCostxNum.add("");
-
 			abilityText.add("-Can defend itself by using 0 defence crests");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 
 			abilityText.add("-On roll: add 2 dice to your standard roll");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-Deal 30 damage to a monster in a straight line");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			return;
@@ -274,9 +274,9 @@ public class Monster {
 		else if (name.equalsIgnoreCase("Ultimate Conductor Tyranno")) {
 			hasActivatableAbility = true;
 			
-			abilityText.add("Spend ALL Attack crests you own to destroy all neiboring monsters in a 5x5 square");
+			abilityText.add("Spend ALL Attack crests you own (min 5) to destroy all neighboring monsters in a 5x5 square");
 			abilityCostPic.add("atk1");
-			abilityCostxNum.add("");
+			abilityCostxNum.add("x5");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Thunder Dragon Colossus")) {
@@ -314,7 +314,7 @@ public class Monster {
 		else if (name.equalsIgnoreCase("Yata-Garasu")) {
 			hasActivatableAbility = true;
 			
-			abilityText.add("Move an opponent's monster by using half your movement crests");
+			abilityText.add("Move an opponent's monster by using your movement crests");
 			abilityCostPic.add("spell1");
 			abilityCostxNum.add("x2");
 			moveOpponentCost = 2;
@@ -341,7 +341,7 @@ public class Monster {
 			hasActivatableAbility = true;
 			
 			abilityText.add("Tribute 2 monsters of the same level to summon a monster 1 level higher");
-			abilityCostPic.add("spell1");
+			abilityCostPic.add("trap1");
 			abilityCostxNum.add("x2");
 			return;
 		}
@@ -375,7 +375,7 @@ public class Monster {
 			abilityCostxNum.add("x3");
 
 			abilityText.add("Half the atk of an opponent's monster and reduce its def by 10");
-			abilityCostPic.add("spell1");
+			abilityCostPic.add("trap1");
 			abilityCostxNum.add("x2");
 			return;
 		} 
@@ -518,8 +518,8 @@ public class Monster {
 			mainPanel.changePhase("Action");
 		}
 		else if (name.equalsIgnoreCase("Obelisk the Tormentor")) {
-			atk = 20 * owner.destroyedMonsters();
-			def = 20 * owner.destroyedMonsters();
+			atk = atk + (20 * owner.destroyedMonsters());
+			def = def + (20 * owner.destroyedMonsters());
 			originalHp = originalHp + (10 * owner.destroyedMonsters());
 			hp = hp + (10 * owner.destroyedMonsters());
 			mainPanel.updateMonsterPanel(this);
@@ -558,8 +558,8 @@ public class Monster {
 				for (int c=-2; c<3; c++)
 					if (tiles[myTile.r()+r][myTile.c()+c].monster() != null 
 							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Monster Lord")
-							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Slifer")
-							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Obelisk")
+							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Slifer The Sky Dragon")
+							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Obelisk The Tormentor")
 							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Winged Dragon of Ra")
 							&& (tiles[myTile.r()+r][myTile.c()+c].getState().equalsIgnoreCase("path1") 
 									|| tiles[myTile.r()+r][myTile.c()+c].getState().equalsIgnoreCase("path2"))) 
@@ -594,8 +594,9 @@ public class Monster {
 				for (int c=-2; c<3; c++)
 					if (tiles[myTile.r()+r][myTile.c()+c].monster() != null 
 							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Monster Lord")
-							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Slifer")
-							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Obelisk")
+							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Slifer The Sky Dragon")
+							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Obelisk The Tormentor")
+							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Ultimate Conductor Tyranno")
 							&& !tiles[myTile.r()+r][myTile.c()+c].monster().name().contains("Winged Dragon of Ra")
 							&& (tiles[myTile.r()+r][myTile.c()+c].getState().equalsIgnoreCase("path1") 
 									|| tiles[myTile.r()+r][myTile.c()+c].getState().equalsIgnoreCase("path2"))) 
@@ -637,6 +638,46 @@ public class Monster {
  				return;
  			}
  			owner.subtractSpell(2);
+ 			JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
+					+ " click on a direction.", 
+	 				name + "'s ability", JOptionPane.INFORMATION_MESSAGE);
+ 			for (int i=0; i<tiles.length; i++) {
+ 				Tile temp = tiles[i][myTile.c()];
+ 				if (!temp.getState().equalsIgnoreCase("dne")) {
+ 					abilityTiles.add(temp);
+ 					temp.setBackground(Color.green);
+ 					if (temp.monster() != null)
+ 						temp.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+ 				}
+ 			}
+ 			for (int i=0; i<tiles[0].length; i++) {
+ 				Tile temp = tiles[myTile.r()][i];
+ 				if (!temp.getState().equalsIgnoreCase("dne")) {
+ 					abilityTiles.add(temp);
+ 					temp.setBackground(Color.green);
+ 					if (temp.monster() != null)
+ 						temp.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+ 				}
+ 			}
+		}
+		else if (name.equalsIgnoreCase("Slifer The Sky Dragon")) {
+			if (owner.spell() < 0) {
+				JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
+						+ " you need at least 0 spell crests to activate " + name + "'s ability.", 
+		 				"Not enough crests", JOptionPane.INFORMATION_MESSAGE);
+				mainPanel.changePhase("Action");
+ 				return;
+			}
+ 			int response = JOptionPane.showConfirmDialog(null, 
+ 					owner.name() + " (" + owner.color() + "),"
+ 					+ " do you want to deal 30 damage to all monsters in a straight line from " + name + "?\n"
+	    				+ "This will cost 3 attack crests.",
+	    				name + "'s ability",
+	    				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+ 			if (response != JOptionPane.YES_OPTION) {
+ 				mainPanel.changePhase("Action");
+ 				return;
+ 			}
  			JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
 					+ " click on a direction.", 
 	 				name + "'s ability", JOptionPane.INFORMATION_MESSAGE);
@@ -767,9 +808,9 @@ public class Monster {
 				mainPanel.changePhase("Action");
 				return;
 			}
-			if (owner.spell() < 2) {
+			if (owner.trap() < 2) {
 				JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
-						+ " you need at least 2 spell crests to activate " + name + "'s ability.", 
+						+ " you need at least 2 trap crests to activate " + name + "'s ability.", 
 		 				"Not enough crests", JOptionPane.INFORMATION_MESSAGE);
 				mainPanel.changePhase("Action");
  				return;
@@ -784,7 +825,7 @@ public class Monster {
  				mainPanel.changePhase("Action");
  				return;
  			}
- 			owner.subtractSpell(2);
+ 			owner.subtractTrap(2);
  			for (Monster mon : mainPanel.opponent().summonedMonsters()) {
  				abilityTiles.add(mon.tile());
  				mon.tile().setBorder(BorderFactory.createLineBorder(Color.green, 3));
@@ -829,9 +870,9 @@ public class Monster {
 				mainPanel.changePhase("Action");
 				return;
  			}
-			if (owner.spell() < 2) {
+			if (owner.trap() < 2) {
 				JOptionPane.showMessageDialog(null, owner.name() + " (" + owner.color() + "), "
-						+ " you need at least 2 spell crests to activate " + name + "'s ability.", 
+						+ " you need at least 2 trap crests to activate " + name + "'s ability.", 
 		 				"Not enough crests", JOptionPane.INFORMATION_MESSAGE);
 				mainPanel.changePhase("Action");
  				return;
@@ -870,7 +911,7 @@ public class Monster {
 			else
 				lvToSummon = Integer.parseInt(lvOptions[response].charAt(6) + "");
 			
-			owner.subtractSpell(2);
+			owner.subtractTrap(2);
 			mainPanel.setMonsterLevelToSummon(lvToSummon);
  			
  			for (Monster mon : owner.summonedMonsters()) {
@@ -900,8 +941,8 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.r() > myTile.r() && aTile.monster() != null 
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
 						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
@@ -911,8 +952,8 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.r() < myTile.r() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
 						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
@@ -922,8 +963,8 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.c() > myTile.c() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
 						&& !aTile.monster().name().contains("Winged Dragon of Ra")   ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
@@ -933,8 +974,8 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.c() < myTile.c() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
 						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
@@ -950,9 +991,9 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.r() > myTile.r() && aTile.monster() != null 
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
-						&& !aTile.monster().name().contains("Winged Dragon of Ra")   ) {
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
+						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
 							aTile.checkAndDestroyMonster();
@@ -961,8 +1002,8 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.r() < myTile.r() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
 						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
@@ -972,9 +1013,9 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.c() > myTile.c() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
-						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
+						&& !aTile.monster().name().contains("Winged Dragon of Ra")   ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
 							aTile.checkAndDestroyMonster();
@@ -983,9 +1024,9 @@ public class Monster {
 					for (Tile aTile : abilityTiles)
 						if (aTile.c() < myTile.c() && aTile.monster() != null
 						&& !aTile.monster().name().contains("Monster Lord")
-						&& !aTile.monster().name().contains("Slifer")
-						&& !aTile.monster().name().contains("Obelisk")
-						&& !aTile.monster().name().contains("Winged Dragon of Ra") ) {
+						&& !aTile.monster().name().contains("Slifer The Sky Dragon")
+						&& !aTile.monster().name().contains("Obelisk The Tormentor")
+						&& !aTile.monster().name().contains("Winged Dragon of Ra")  ) {
 							aTile.monster().changeHp(aTile.monster().hp() - shoot);
 							mainPanel.updateMonsterPanel(aTile.monster());
 							aTile.checkAndDestroyMonster();
@@ -1198,7 +1239,7 @@ public class Monster {
 				attacker.changeHp(attacker.hp() - 3);
 		}
 		
-		//on being attacked the attacker takes damage
+		//on being attacked
 		if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
 			if (!attacker.name().contains("Monster Lord"))
 				owner.subtractTrap(1);

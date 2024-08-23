@@ -55,13 +55,9 @@ public class Player {
 	
 	public void setUpAllMonsters() {
 		//To add abilities
-		//allMonsters.add(new Monster("Naturia Beast", 20, 20, 10, this, mainPanel, 2));//new
-		//allMonsters.add(new Monster("Naturia Barkion", 20, 25, 10, this, mainPanel, 2));//new
 		//allMonsters.add(new Monster("Babycerasaurus", 10, 10, 10, this, mainPanel, 1));//overdrive
 		//allMonsters.add(new Monster("Thunder Dragon Colossus", 40, 30, 30, this, mainPanel, 3));//new
 		//allMonsters.add(new Monster("Sky Striker Raye", 20, 15, 15, this, mainPanel, 2));//volcano
-		//allMonsters.add(new Monster("Sky Striker Roze", 20, 15, 15, this, mainPanel, 2));//wall shadow
-		//allMonsters.add(new Monster("Ash Blossom", 10, 10, 20, this, mainPanel, 1));
 		//allMonsters.add(new Monster("Ursarctic Polari", 10, 10, 0, this, mainPanel, 1));
 		//allMonsters.add(new Monster("Albaz", 15, 25, 15, this, mainPanel, 2));
 		//allMonsters.add(new Monster("Ecclesia", 10, 15, 10, this, mainPanel, 2));
@@ -69,31 +65,40 @@ public class Player {
 		//allMonsters.add(new Monster("Stardust Dragon", 30, 20, 10, this, mainPanel, 3));
 		//allMonsters.add(new Monster("Ghoti of the Deep Beyond", 40, 0, 0, this, mainPanel, 3));
 		//allMonsters.add(new Monster("Stone Sweeper", 10, 20, 0, this, mainPanel, 1));
-		//allMonsters.add(new Monster("Numerounius Numerounia", 10, 1000, 1000, this, mainPanel, 5));
-	
+		
 
 		//Abilities done
-		allMonsters.add(new Monster("Yata-Garasu", 20, 0, 0, this, mainPanel, 1));
-		allMonsters.add(new Monster("Dangerous Machine Type-6", 20, 0, 0, this, mainPanel, 1));
-		allMonsters.add(new Monster("Tsuchinoko", 10, 10, 0, this, mainPanel, 1));
-		allMonsters.add(new Monster("Labrynth Labyrinth", 60, 0, 10, this, mainPanel, 1));
-		allMonsters.add(new Monster("Cyber Dragon Core", 10, 10, 20, this, mainPanel, 1));
-		allMonsters.add(new Monster("Snake-Eyes Poplar", 10, 10, 10, this, mainPanel, 1)); 		
-		allMonsters.add(new Monster("Vampire Fraulein", 40, 10, 10, this, mainPanel, 2));
-		allMonsters.add(new Monster("IP Masquerena", 10, 10, 20, this, mainPanel, 2));
-		allMonsters.add(new Monster("Ki Sikil", 20, 20, 10, this, mainPanel, 2));
-		allMonsters.add(new Monster("Lil La", 20, 20, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("Yata-Garasu", 10, 10, 0, this, mainPanel, 1));
+		allMonsters.add(new Monster("Musical Sumo Dice Games", 20, 0, 0, this, mainPanel, 1));
+		allMonsters.add(new Monster("Tsuchinoko", 10, 10, 10, this, mainPanel, 1));
+		allMonsters.add(new Monster("Wall of Illusion", 30, 0, 10, this, mainPanel, 1));
+		allMonsters.add(new Monster("Cyber Dragon Core", 10, 10, 10, this, mainPanel, 1));
+		allMonsters.add(new Monster("Snake-Eyes Poplar", 10, 10, 0, this, mainPanel, 1)); 	
+		allMonsters.add(new Monster("Ash Blossom", 10, 10, 20, this, mainPanel, 1));	
+
+		allMonsters.add(new Monster("Vampire Fraulein", 30, 0, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("IP Masquerena", 20, 20, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("Ki Sikil", 10, 20, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("Lil La", 10, 20, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("Naturia Beast", 20, 30, 10, this, mainPanel, 2));
+		allMonsters.add(new Monster("Naturia Barkion", 25, 35, 15, this, mainPanel, 2));
+		allMonsters.add(new Monster("Sky Striker Roze", 20, 15, 15, this, mainPanel, 2));
+
 		allMonsters.add(new Monster("Magicians of Bond and Unity", 40, 30, 10, this, mainPanel, 3)); 
 		allMonsters.add(new Monster("Cartesia", 40, 30, 0, this, mainPanel, 3));
-		allMonsters.add(new Monster("Gandora", 10, 20, 0, this, mainPanel, 3));
+		allMonsters.add(new Monster("Gandora", 10, 20, 10, this, mainPanel, 3));
 		allMonsters.add(new Monster("Gameciel, The Sea Turtle Kaiju", 20, 30, 10, this, mainPanel, 3));
-		allMonsters.add(new Monster("Ultimate Conductor Tyranno", 30, 40, 20, this, mainPanel, 3)); 
-		allMonsters.add(new Monster("Deus Machinex", 50, 40, 20, this, mainPanel, 4)); 
-		allMonsters.add(new Monster("AriseHeart", 50, 40, 30, this, mainPanel, 4)); 
-		allMonsters.add(new Monster("Dragon Magia Master", 60, 50, 20, this, mainPanel, 4)); 
-		allMonsters.add(new Monster("Slifer the Sky Dragon", 60, 60, 60, this, mainPanel, 5));
-		allMonsters.add(new Monster("Obelisk the Tormentor", 60, 60, 60, this, mainPanel, 5));
-		allMonsters.add(new Monster("Winged Dragon of Ra", 60, 60, 60, this, mainPanel, 5));
+		allMonsters.add(new Monster("Ultimate Conductor Tyranno", 20, 40, 20, this, mainPanel, 3)); 
+
+		allMonsters.add(new Monster("Deus Machinex", 30, 40, 20, this, mainPanel, 4)); 
+		allMonsters.add(new Monster("AriseHeart", 30, 40, 30, this, mainPanel, 4)); 
+		allMonsters.add(new Monster("Dragon Magia Master", 40, 50, 10, this, mainPanel, 4)); 
+
+		allMonsters.add(new Monster("Slifer the Sky Dragon", 50, 50, 50, this, mainPanel, 5));
+		allMonsters.add(new Monster("Obelisk the Tormentor", 50, 50, 50, this, mainPanel, 5));
+		allMonsters.add(new Monster("Winged Dragon of Ra", 50, 50, 50, this, mainPanel, 5));
+		allMonsters.add(new Monster("Numerounius Numerounia", 100, 1000, 1000, this, mainPanel, 5));
+	
 	}
 	
 	public void addAtk(int i) {

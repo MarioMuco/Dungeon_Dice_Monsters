@@ -80,11 +80,22 @@ public class Monster {
 			abilityCostxNum.add("");
 			return;
 		}
-		//TODO:
 		else if (name.equalsIgnoreCase("Numerounius Numerounia")) {
-			hasActivatableAbility = true;
+			hasActivatableAbility = false;
 			
-			abilityText.add("");
+			abilityText.add("-On summon remove all of your opponent's crests");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-On summon double all of your crests");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-Can move for free");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
+
+			abilityText.add("-Can attack for free");
 			abilityCostPic.add("");
 			abilityCostxNum.add("");
 			return;
@@ -141,7 +152,7 @@ public class Monster {
 			abilityCostxNum.add("x2");
 			return;
 		}
-		else if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
+		else if (name.equalsIgnoreCase("Wall of Illusion")) {
 			hasActivatableAbility = false;
 
 			abilityText.add("Increases defence by 20 after getting attacked");
@@ -152,7 +163,9 @@ public class Monster {
 		else if (name.equalsIgnoreCase("Naturia Beast")) {
 			hasActivatableAbility = false;
 						
-			//"Double cost for opponents spells";
+			abilityText.add("-On summon make your opponent's spell crests 0");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Winged Dragon of Ra")) {
@@ -215,11 +228,12 @@ public class Monster {
 			abilityCostxNum.add("");
 			return;
 		}
-		//TODO:
 		else if (name.equalsIgnoreCase("Naturia Barkion")) {
 			hasActivatableAbility = false;
 						
-			//"Double cost for movement opponent";
+			abilityText.add("-On summon make your opponent's trap crests 0");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
 			return;
 		}
 		else if (name.equalsIgnoreCase("Dragon Magia Master")) {
@@ -240,15 +254,16 @@ public class Monster {
 			//"anchor";
 			return;
 		}
-		//TODO:
 		else if (name.equalsIgnoreCase("Sky Striker Roze")) {
-			hasActivatableAbility = false;
+			hasActivatableAbility = true;
 			
-			
-			//"afterburners";
+			abilityText.add("-Attack a random monster anywhere on the field");
+			abilityCostPic.add("spell1");
+			abilityCostxNum.add("");
+
 			return;
 		}
-		else if (name.equalsIgnoreCase("Dangerous Machine Type-6")) {
+		else if (name.equalsIgnoreCase("Musical Sumo Dice Games")) {
 			hasActivatableAbility = false;
 			
 			abilityText.add("-On roll add or subtract up to 3 dice to your standard roll");
@@ -279,6 +294,7 @@ public class Monster {
 			abilityCostxNum.add("x5");
 			return;
 		}
+		//TODO:
 		else if (name.equalsIgnoreCase("Thunder Dragon Colossus")) {
 			hasActivatableAbility = true;
 						
@@ -392,9 +408,11 @@ public class Monster {
 			return;
 		} 
 		else if (name.equalsIgnoreCase("Ash Blossom")) {
-			hasActivatableAbility = true;
+			hasActivatableAbility = false;
 			
-
+			abilityText.add("-On summon decrease all of your opponent's crests by 1");
+			abilityCostPic.add("");
+			abilityCostxNum.add("");
 			return;
 		} 
 		//TODO:
@@ -471,7 +489,7 @@ public class Monster {
 		return "~";
 	}
 	
-	//Text when summoning
+	//Ability when summoning
 	public void summon() {
 		if (name.equalsIgnoreCase("Gandora")) {
 			if (mainPanel.opponent().summonedMonsters().size() < 1) {
@@ -503,6 +521,38 @@ public class Monster {
 		}
 		else if (name.equalsIgnoreCase("Cyber Dragon Core") || name.equalsIgnoreCase("Magicians of Bond and Unity")) {
 			owner.subtractSpell(-2);
+			mainPanel.changePhase("Action");
+		}
+		else if (name.equalsIgnoreCase("Naturia Beast")) {
+			mainPanel.opponent().subtractSpell(mainPanel.opponent().spell());
+			mainPanel.changePhase("Action");
+		}
+		else if (name.equalsIgnoreCase("Naturia Barkion")) {
+			mainPanel.opponent().subtractTrap(mainPanel.opponent().trap());
+			mainPanel.changePhase("Action");
+		}
+		else if (name.equalsIgnoreCase("Numerounius Numerounia")) {
+			mainPanel.opponent().subtractTrap(mainPanel.opponent().trap());
+			mainPanel.opponent().subtractSpell(mainPanel.opponent().spell());
+			mainPanel.opponent().subtractAtk(mainPanel.opponent().atk());
+			mainPanel.opponent().subtractDef(mainPanel.opponent().def());
+			mainPanel.opponent().subtractMove(mainPanel.opponent().move());
+
+			owner.subtractSpell(-(owner.spell()));
+			owner.subtractTrap(-(owner.trap()));
+			owner.subtractMove(-(owner.move()));
+			owner.subtractAtk(-(owner.atk()));
+			owner.subtractDef(-(owner.def()));
+
+			mainPanel.changePhase("Action");
+		}
+		else if (name.equalsIgnoreCase("Ash Blossom")) {
+			mainPanel.opponent().subtractTrap(1);
+			mainPanel.opponent().subtractSpell(1);
+			mainPanel.opponent().subtractAtk(1);
+			mainPanel.opponent().subtractDef(1);
+			mainPanel.opponent().subtractMove(1);
+
 			mainPanel.changePhase("Action");
 		}
 		else if (name.equalsIgnoreCase("Snake-Eyes Poplar")) {
@@ -629,7 +679,7 @@ public class Monster {
 			}
  			int response = JOptionPane.showConfirmDialog(null, 
  					owner.name() + " (" + owner.color() + "),"
- 					+ " do you want to deal 10 damage to all monsters in a straight line from " + name + "?\n"
+ 					+ " do you want to deal 10 damage to a monsters in a straight line from " + name + "?\n"
 	    				+ "This will cost 3 attack crests.",
 	    				name + "'s ability",
 	    				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -670,7 +720,7 @@ public class Monster {
 			}
  			int response = JOptionPane.showConfirmDialog(null, 
  					owner.name() + " (" + owner.color() + "),"
- 					+ " do you want to deal 30 damage to all monsters in a straight line from " + name + "?\n"
+ 					+ " do you want to deal 30 damage to a monsters in a straight line from " + name + "?\n"
 	    				+ "This will cost 3 attack crests.",
 	    				name + "'s ability",
 	    				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -778,7 +828,16 @@ public class Monster {
  				abilityTiles.add(mon.tile());
  				mon.tile().setBorder(BorderFactory.createLineBorder(Color.green, 3));
 			}
-		
+		}
+		else if (name.equalsIgnoreCase("Sky Striker Roze")) {
+			if (mainPanel.opponent().summonedMonsters().size() > 0) {
+				Monster burnTarget = mainPanel.opponent().summonedMonsters()
+						.get((int)(Math.random()*mainPanel.opponent().summonedMonsters().size()));
+				burnTarget.changeHp(burnTarget.hp()-10);
+				mainPanel.updateMonsterPanel(burnTarget);
+				burnTarget.tile().checkAndDestroyMonster();
+			}
+			owner.subtractSpell(1);
 		}
 		else if (name.equalsIgnoreCase("Gameciel, The Sea Turtle Kaiju")) {
 			if (mainPanel.opponent().summonedMonsters().size() < 1) {
@@ -920,16 +979,7 @@ public class Monster {
  	 				mon.tile().setBorder(BorderFactory.createLineBorder(Color.green, 3));
  				}
 			}
-		}
-		else if (name.equalsIgnoreCase("Mr. Volcano")) {
-			Player actualOpponent = mainPanel.theActualOpponent(owner.turnPlayer());
-			if (actualOpponent.summonedMonsters().size() > 0) {
-				Monster burnTarget = actualOpponent.summonedMonsters()
-						.get((int)(Math.random()*actualOpponent.summonedMonsters().size()));
-				burnTarget.changeHp(burnTarget.hp() - 2);
-				burnTarget.tile().checkAndDestroyMonster();
-			}
-		}		
+		}	
 	}
 	
 	//Trigger abilities
@@ -1174,7 +1224,7 @@ public class Monster {
 	
 	//Abilities when rolling
 	public int rollAbility() {
-		if (name.equalsIgnoreCase("Dangerous Machine Type-6")) {
+		if (name.equalsIgnoreCase("Musical Sumo Dice Games")) {
 			if ((int)(Math.random()*4) == 0)	//25%
 				return 0;
 			else {
@@ -1240,7 +1290,7 @@ public class Monster {
 		}
 		
 		//on being attacked
-		if (name.equalsIgnoreCase("Labrynth Labyrinth")) {
+		if (name.equalsIgnoreCase("Wall of Illusion")) {
 			if (!attacker.name().contains("Monster Lord"))
 				owner.subtractTrap(1);
 				changeDef(def + 20);
@@ -1305,6 +1355,9 @@ public class Monster {
 		if (name.equalsIgnoreCase("Deus Machinex")) {
 			return 0.5;
 		}
+		else if (name.equalsIgnoreCase("Numerounius Numerounia")) {
+			return 0;
+		}
 		else if (name.equalsIgnoreCase("Magicians of Bond and Unity")) {
 			return 0.5;
 		}
@@ -1331,6 +1384,8 @@ public class Monster {
 			return 2;
 		else if (name.equalsIgnoreCase("Dragon Magia Master"))
 			return 2;
+		else if (name.equalsIgnoreCase("Numerounius Numerounia"))
+			return 0;
 		else if (name.equalsIgnoreCase("Lil La"))
 			return 3;
 		else if (name.equalsIgnoreCase("Ki Sikil"))

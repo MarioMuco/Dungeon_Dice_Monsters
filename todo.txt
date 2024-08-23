@@ -1,0 +1,50 @@
+when destroying a monster activate
+when attacked
+when end phase
+when summoned
+destroy all in a square around                  explosion wne destroying
+increase, remove crests of both players
+no cost for attacking, moving
+increase/ decrease attack, defense, life
+add dies to standart roll all the time
+add die next turn 
+demage in a straight line
+deal damage to a random monster                
+calculate number of destroyed monsters          can attack up to this number
+move an ooponents monster
+summon a monster level higher from what you are tributing
+return to hand
+heal monster lord
+
+
+
+On being attacked: the attacker takes damage equal to half its attack - interplanetary
+appolousa - gains atk 10 for each you control - obelisk
+guardragon baby
+balerdroch
+monster that can be summoned twice Player.java = line 152
+monster that can be summoned anywhere on filed takes 5 to attack
+remove the opponents tiles
+
+
+
+fix ash blossom can go negative
+
+
+
+-babycerausaueurs - when destroyed summon big dino
+owner.subtractTrap(2);
+			mainPanel.setMonsterLevelToSummon(lvToSummon);
+ 			
+ 			for (Monster mon : owner.summonedMonsters()) {
+ 				if (mon.level() == lvToSummon-1) {
+ 					abilityTiles.add(mon.tile());
+ 	 				mon.tile().setBorder(BorderFactory.createLineBorder(Color.green, 3));
+ 				}
+			}
+
+-raye - take control of an opponents monster
+
+
+
+- test = roze
